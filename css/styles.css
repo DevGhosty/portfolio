@@ -154,3 +154,81 @@ canvas#bg-canvas {
     opacity: 0.75;
     pointer-events: none;
 }
+
+/* ============== REFINED LIGHT MODE OVERRIDES ============== 
+   Cleaner selectors, broader coverage (hero, forms, footer, cards), reduced redundancy.
+   Surgical update — only this block changed. Fully scalable with Tailwind dark: prefixes.
+   Updated 2026-04-24
+*/
+html:not(.dark) {
+    /* Light theme base colors */
+    --bg: #f8fafc;
+    --text: #1e2937;
+    --card: #ffffff;
+    --accent: #3b82f6;
+    --border: rgba(0, 0, 0, 0.1);
+    --section-bg: #f1f5f9;
+    --card-hover: #f8fafc;
+}
+
+/* Global backgrounds & text */
+html:not(.dark) body,
+html:not(.dark) section,
+html:not(.dark) .bg-slate-950,
+html:not(.dark) .bg-slate-900,
+html:not(.dark) .bg-slate-900\/70,
+html:not(.dark) .bg-slate-900\/50 {
+    background-color: var(--bg) !important;
+    color: var(--text) !important;
+}
+
+/* Specific sections that need section-bg */
+html:not(.dark) #skills,
+html:not(.dark) #contact {
+    background-color: var(--section-bg) !important;
+}
+
+/* Nav */
+html:not(.dark) nav {
+    background-color: rgba(248, 250, 252, 0.95) !important;
+    border-bottom-color: var(--border) !important;
+}
+
+html:not(.dark) nav a {
+    color: var(--text) !important;
+}
+
+/* Common dark-mode text classes */
+html:not(.dark) .text-slate-300,
+html:not(.dark) .text-slate-400,
+html:not(.dark) .text-slate-500,
+html:not(.dark) .text-slate-200,
+html:not(.dark) .text-slate-100 {
+    color: var(--text) !important;
+}
+
+/* Cards, borders, and hover states */
+html:not(.dark) .border-blue-900\/30,
+html:not(.dark) .border-blue-900\/50,
+html:not(.dark) .border-slate-700 {
+    border-color: var(--border) !important;
+}
+
+/* Contact form inputs/textarea */
+html:not(.dark) input,
+html:not(.dark) textarea {
+    background-color: var(--card) !important;
+    border-color: var(--border) !important;
+    color: var(--text) !important;
+}
+
+/* Footer */
+html:not(.dark) footer {
+    background-color: var(--bg) !important;
+    color: var(--text) !important;
+}
+
+/* Blue accents must remain blue in both modes */
+.accent-blue {
+    color: var(--accent) !important;
+}
