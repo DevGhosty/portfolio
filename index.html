@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ghosty | Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600&amp;display=swap');
+    
+    body {
+      background: #000000;
+      color: #e2e8f0;
+      font-family: 'Inter', system_ui, sans-serif;
+    }
+    
+    .accent-blue {
+      color: #60a5fa;
+      text-shadow: 0 0 15px rgba(96, 165, 250, 0.5);
+    }
+    
+    .hero-bg {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    canvas#bg-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.75;
+    }
+  </style>
+</head>
+<body class="min-h-screen">
+
+  <!-- Dynamic Background Canvas -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- NAV -->
+  <nav class="fixed top-0 w-full bg-black/80 backdrop-blur-md z-50 border-b border-white/10">
+    <div class="max-w-6xl mx-auto px-6 py-5 flex justify-between items-center">
+      <div class="text-3xl font-bold tracking-tighter accent-blue">Hello There<span class="text-blue-400">.</span></div>
+      <div class="hidden md:flex gap-8 text-sm font-medium">
+        <a href="#about" class="hover:text-blue-400 transition-colors">About</a>
+        <a href="#projects" class="hover:text-blue-400 transition-colors">Projects</a>
+        <a href="#skills" class="hover:text-blue-400 transition-colors">Skills</a>
+        <a href="#contact" class="hover:text-blue-400 transition-colors">Contact</a>
+      </div>
+      <button onclick="toggleMobile()" class="md:hidden text-2xl">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header id="hero" class="hero-bg min-h-screen flex items-center pt-20 relative">
+    <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center z-10">
+      <div>
+        <h1 class="text-6xl md:text-7xl font-bold tracking-tighter leading-none accent-blue">
+          Steven Rosas
+        </h1>
+        <p class="text-2xl md:text-3xl mt-4 text-slate-400">Software Engineer • Game Developer</p>
+        <p class="mt-6 text-slate-400 max-w-md">Seattle-based. Building immersive digital experiences with code and pixels.</p>
+        
+        <div class="mt-10 flex gap-4">
+          <a href="#projects" class="bg-blue-500 hover:bg-blue-600 px-8 py-4 rounded-2xl font-semibold transition-all active:scale-95">View Projects</a>
+          <a href="#contact" class="border border-slate-500 hover:border-blue-400 px-8 py-4 rounded-2xl font-semibold transition-all">Let's Talk</a>
+        </div>
+
+        <div class="mt-16 flex gap-8 text-sm">
+<a href="https://linkedin.com/in/YOURPROFILE" target="_blank" class="flex items-center gap-2 hover:text-blue-400">
+  <i class="fa-brands fa-linkedin"></i> LinkedIn
+</a>          <a href="#" class="flex items-center gap-2 hover:text-blue-400"><i class="fa-brands fa-github"></i> github</a>
+        </div>
+      </div>
+      
+      <div class="relative flex justify-center">
+        <div class="w-72 h-72 rounded-3xl bg-gradient-to-br from-blue-900/30 to-slate-900/50 border border-blue-500/30 flex items-center justify-center backdrop-blur-sm">
+          <div class="text-9xl drop-shadow-2xl">👻</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ABOUT -->
+  <section id="about" class="max-w-6xl mx-auto px-6 py-24">
+    <h2 class="text-4xl font-semibold mb-8 accent-blue">About Me</h2>
+    <div class="grid md:grid-cols-2 gap-12">
+      <div class="text-slate-300 leading-relaxed space-y-6">
+        <p>I'm a multidisciplinary creator based in Seattle. I specialize in turning bold ideas into clean, high-performance digital experiences.</p>
+        <p>Whether it's interactive websites, 3D visuals, or experimental interfaces — I thrive at the intersection of design and code.</p>
+      </div>
+      <div class="bg-slate-900/50 border border-blue-900/50 rounded-3xl p-8">
+        <h3 class="text-blue-400 mb-6">Currently exploring</h3>
+        <ul class="space-y-4">
+          <li class="flex gap-4"><span class="text-blue-400">→</span> Real-time web experiences</li>
+          <li class="flex gap-4"><span class="text-blue-400">→</span> Procedural generative art</li>
+          <li class="flex gap-4"><span class="text-blue-400">→</span> Open-source tools</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="bg-slate-950 py-24">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="text-4xl font-semibold mb-12 accent-blue">Skills &amp; Toolbox</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="bg-slate-900 hover:bg-slate-800 border border-blue-900/50 p-6 rounded-3xl text-center transition">TypeScript</div>
+        <div class="bg-slate-900 hover:bg-slate-800 border border-blue-900/50 p-6 rounded-3xl text-center transition">React / Next.js</div>
+        <div class="bg-slate-900 hover:bg-slate-800 border border-blue-900/50 p-6 rounded-3xl text-center transition">Three.js / WebGL</div>
+        <div class="bg-slate-900 hover:bg-slate-800 border border-blue-900/50 p-6 rounded-3xl text-center transition">Tailwind CSS</div>
+        <div class="bg-slate-900 hover:bg-slate-800 border border-blue-900/50 p-6 rounded-3xl text-center transition">Figma + Framer</div>
+        <div class="bg-slate-900 hover:bg-slate-800 border border-blue-900/50 p-6 rounded-3xl text-center transition">Node.js / Python</div>
+        <div class="bg-slate-900 hover:bg-slate-800 border border-blue-900/50 p-6 rounded-3xl text-center transition">Blender / 3D</div>
+        <div class="bg-slate-900 hover:bg-slate-800 border border-blue-900/50 p-6 rounded-3xl text-center transition">AI Integration</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="max-w-6xl mx-auto px-6 py-24">
+    <h2 class="text-4xl font-semibold mb-12 accent-blue">Featured Work</h2>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="group bg-slate-900/70 border border-blue-900/30 hover:border-blue-500 rounded-3xl overflow-hidden transition-all">
+        <div class="h-60 bg-gradient-to-br from-blue-900 to-slate-900 flex items-center justify-center text-7xl">🌌</div>
+        <div class="p-6">
+          <h3 class="font-semibold text-xl">Nebula UI Kit</h3>
+          <p class="text-slate-400 mt-2">Dark futuristic component library with dynamic animations.</p>
+          <a href="#" class="text-blue-400 mt-6 inline-flex items-center gap-2">View case study →</a>
+        </div>
+      </div>
+      <!-- Add more projects here -->
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="bg-slate-950 py-24">
+    <div class="max-w-xl mx-auto px-6 text-center">
+      <h2 class="text-4xl font-semibold accent-blue">Let's create something dark and beautiful</h2>
+      <p class="mt-4 text-slate-400">Open to freelance, collaborations, or just a conversation over Seattle coffee.</p>
+      
+      <form class="mt-12 space-y-6" action="https://formspree.io/f/YOUR_CODE" method="POST">
+        <input type="text" name="name" placeholder="Name" class="w-full bg-black border border-slate-700 focus:border-blue-500 rounded-2xl px-6 py-5 outline-none">
+        <input type="email" name="email" placeholder="Email" class="w-full bg-black border border-slate-700 focus:border-blue-500 rounded-2xl px-6 py-5 outline-none">
+        <textarea name="message" rows="5" placeholder="Message" class="w-full bg-black border border-slate-700 focus:border-blue-500 rounded-2xl px-6 py-5 outline-none"></textarea>
+        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-500 py-5 rounded-2xl font-semibold transition">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <footer class="bg-black py-8 text-center text-slate-500 text-sm">
+    © 2026 Ghosty • Built from scratch in the void
+  </footer>
+
+  <script>
+    // Dynamic Particle Background
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+    
+    let particles = [];
+    let width, height;
+    
+    class Particle {
+      constructor() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.size = Math.random() * 2.5 + 0.5;
+        this.speedX = Math.random() * 0.5 - 0.25;
+        this.speedY = Math.random() * 0.5 - 0.25;
+        this.opacity = Math.random() * 0.6 + 0.2;
+      }
+      
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        
+        if (this.x < 0 || this.x > width) this.speedX *= -1;
+        if (this.y < 0 || this.y > height) this.speedY *= -1;
+      }
+      
+      draw() {
+        ctx.fillStyle = `rgba(96, 165, 250, ${this.opacity})`;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+    
+    function resizeCanvas() {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+    }
+    
+    function initParticles() {
+      particles = [];
+      const count = Math.floor(width * height / 8000);
+      for (let i = 0; i < count; i++) {
+        particles.push(new Particle());
+      }
+    }
+    
+    function animate() {
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.08)';
+      ctx.fillRect(0, 0, width, height);
+      
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      
+      // Connect nearby particles with faint lines
+      ctx.strokeStyle = 'rgba(96, 165, 250, 0.08)';
+      ctx.lineWidth = 0.5;
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx*dx + dy*dy);
+          
+          if (dist < 120) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+      
+      requestAnimationFrame(animate);
+    }
+    
+    window.addEventListener('resize', () => {
+      resizeCanvas();
+      initParticles();
+    });
+    
+    // Initialize
+    resizeCanvas();
+    initParticles();
+    animate();
+    
+    function toggleMobile() {
+      alert("Mobile menu coming soon — let me know if you want it expanded!");
+    }
+  </script>
+</body>
+</html>
