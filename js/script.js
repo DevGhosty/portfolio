@@ -41,6 +41,30 @@ class Particle {
     }
 }
 
+// ==================== SCROLL GLOW EFFECT FOR SECTION TITLES ====================
+function initScrollGlow() {
+    const headings = document.querySelectorAll('h2.accent-blue');
+
+    if (!headings.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('in-view');
+            } else {
+                entry.target.classList.remove('in-view');
+            }
+        });
+    }, {
+        threshold: 0.6,        // Trigger when 60% of the title is visible
+        rootMargin: '-20px 0px -20px 0px' // Small buffer so it feels natural
+    });
+
+    headings.forEach(heading => {
+        observer.observe(heading);
+    });
+}
+
 function resizeCanvas() {
     width = window.innerWidth;
     height = window.innerHeight;
@@ -116,6 +140,9 @@ function init() {
     window.addEventListener('resize', () => {
         startBackground();
     });
+
+    // New: Scroll-activated glow
+    initScrollGlow();
 }
 
 // Run when DOM is ready

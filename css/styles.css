@@ -8,7 +8,51 @@ body {
 
 .accent-blue {
     color: #60a5fa;
-    text-shadow: 0 0 15px rgba(96, 165, 250, 0.5);
+    /* Base subtle glow - always visible */
+    text-shadow:
+        0 0 10px rgba(96, 165, 250, 0.6),
+        0 0 20px rgba(96, 165, 250, 0.4);
+    transition: text-shadow 0.6s ease-out;
+}
+
+/* Slower, more gradual pulsing glow (lightning-inspired but smoother) */
+.accent-blue.in-view {
+    animation: lightning-glow 5s infinite ease-in-out;
+}
+
+/* Stronger, gradual pulses */
+@keyframes lightning-glow {
+
+    0%,
+    100% {
+        text-shadow:
+            0 0 12px rgba(96, 165, 250, 0.75),
+            0 0 25px rgba(96, 165, 250, 0.55),
+            0 0 45px rgba(96, 165, 250, 0.35);
+    }
+
+    25% {
+        text-shadow:
+            0 0 18px rgba(96, 165, 250, 0.95),
+            0 0 38px rgba(96, 165, 250, 0.8),
+            0 0 65px rgba(96, 165, 250, 0.55),
+            0 0 90px rgba(96, 165, 250, 0.3);
+    }
+
+    50% {
+        text-shadow:
+            0 0 14px rgba(96, 165, 250, 0.85),
+            0 0 30px rgba(96, 165, 250, 0.65),
+            0 0 55px rgba(96, 165, 250, 0.45);
+    }
+
+    75% {
+        text-shadow:
+            0 0 20px rgba(96, 165, 250, 0.98),
+            0 0 42px rgba(96, 165, 250, 0.85),
+            0 0 75px rgba(96, 165, 250, 0.6),
+            0 0 100px rgba(96, 165, 250, 0.25);
+    }
 }
 
 .hero-bg {
