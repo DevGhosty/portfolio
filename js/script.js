@@ -1,7 +1,4 @@
 // ==================== PARTICLE BACKGROUND SYSTEM ====================
-// Best practices: Encapsulated, performant, well-commented for juniors.
-// Uses requestAnimationFrame, minimal DOM reads, object pooling pattern.
-
 const canvas = document.getElementById('bg-canvas');
 const ctx = canvas.getContext('2d', { alpha: true });
 
@@ -11,9 +8,7 @@ let height = 0;
 let animationFrameId = null;
 
 class Particle {
-    constructor() {
-        this.reset();
-    }
+    constructor() { this.reset(); }
 
     reset() {
         this.x = Math.random() * width;
@@ -27,42 +22,19 @@ class Particle {
     update() {
         this.x += this.speedX;
         this.y += this.speedY;
-
-        // Simple bounce (edge handling)
         if (this.x < 0 || this.x > width) this.speedX *= -1;
         if (this.y < 0 || this.y > height) this.speedY *= -1;
     }
 
     draw() {
-        ctx.fillStyle = `rgba(96, 165, 250, ${this.opacity})`;
+        const alpha = this.opacity;
+        ctx.fillStyle = document.documentElement.classList.contains('light')
+            ? `rgba(59, 130, 246, ${alpha})`
+            : `rgba(96, 165, 250, ${alpha})`;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fill();
     }
-}
-
-// ==================== SCROLL GLOW EFFECT FOR SECTION TITLES ====================
-function initScrollGlow() {
-    const headings = document.querySelectorAll('h2.accent-blue');
-
-    if (!headings.length) return;
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('in-view');
-            } else {
-                entry.target.classList.remove('in-view');
-            }
-        });
-    }, {
-        threshold: 0.6,        // Trigger when 60% of the title is visible
-        rootMargin: '-20px 0px -20px 0px' // Small buffer so it feels natural
-    });
-
-    headings.forEach(heading => {
-        observer.observe(heading);
-    });
 }
 
 function resizeCanvas() {
@@ -74,30 +46,22 @@ function resizeCanvas() {
 
 function initParticles() {
     particles = [];
-    // Performance-tuned density (8000px per particle ≈ good balance)
     const count = Math.floor((width * height) / 8000);
-    for (let i = 0; i < count; i++) {
-        particles.push(new Particle());
-    }
+    for (let i = 0; i < count; i++) particles.push(new Particle());
 }
 
 function drawConnections() {
     ctx.strokeStyle = 'rgba(96, 165, 250, 0.08)';
     ctx.lineWidth = 0.5;
-
-    // O(n²) but limited by low particle count — acceptable for background
     for (let i = 0; i < particles.length; i++) {
-        const p1 = particles[i];
         for (let j = i + 1; j < particles.length; j++) {
-            const p2 = particles[j];
-            const dx = p1.x - p2.x;
-            const dy = p1.y - p2.y;
+            const dx = particles[i].x - particles[j].x;
+            const dy = particles[i].y - particles[j].y;
             const dist = Math.hypot(dx, dy);
-
             if (dist < 120) {
                 ctx.beginPath();
-                ctx.moveTo(p1.x, p1.y);
-                ctx.lineTo(p2.x, p2.y);
+                ctx.moveTo(particles[i].x, particles[i].y);
+                ctx.lineTo(particles[j].x, particles[j].y);
                 ctx.stroke();
             }
         }
@@ -105,15 +69,10 @@ function drawConnections() {
 }
 
 function animate() {
-    // Fade trail effect
     ctx.fillStyle = 'rgba(0, 0, 0, 0.08)';
     ctx.fillRect(0, 0, width, height);
 
-    for (const p of particles) {
-        p.update();
-        p.draw();
-    }
-
+    particles.forEach(p => { p.update(); p.draw(); });
     drawConnections();
 
     animationFrameId = requestAnimationFrame(animate);
@@ -126,47 +85,66 @@ function startBackground() {
     animate();
 }
 
-// ==================== MOBILE MENU (placeholder) ====================
-function toggleMobileMenu() {
-    // TODO: Replace alert with real drawer/slide-in menu using Tailwind + JS
-    alert("Mobile menu coming soon — let me know if you want it expanded!");
+// ==================== SCROLL GLOW ====================
+function initScrollGlow() {
+    const headings = document.querySelectorAll('h2.accent-blue');
+    if (!headings.length) return;
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            entry.target.classList.toggle('in-view', entry.isIntersecting);
+        });
+    }, { threshold: 0.6 });
+
+    headings.forEach(h => observer.observe(h));
 }
 
-// ==================== SCROLL PROGRESS INDICATOR ====================
+// ==================== PROGRESS BAR ====================
 function initProgressBar() {
-    const progressBar = document.createElement('div');
-    progressBar.id = 'progress-bar';
-    document.body.appendChild(progressBar);
+    const bar = document.createElement('div');
+    bar.id = 'progress-bar';
+    document.body.appendChild(bar);
 
-    function updateProgress() {
+    const update = () => {
         const scrollTop = window.scrollY;
-        const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-        progressBar.style.width = `${scrollPercent}%`;
-    }
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        bar.style.width = height > 0 ? `${(scrollTop / height) * 100}%` : '0%';
+    };
 
-    window.addEventListener('scroll', updateProgress);
-    // Initial call
-    updateProgress();
+    window.addEventListener('scroll', update);
+    update();
 }
 
-// ==================== INITIALIZATION & CLEANUP ====================
+// ==================== THEME TOGGLE ====================
+function initTheme() {
+    const toggle = document.getElementById('theme-toggle');
+
+    const getPreferred = () => localStorage.getItem('theme') ||
+        (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+
+    const setTheme = (theme) => {
+        document.documentElement.classList.toggle('light', theme === 'light');
+        localStorage.setItem('theme', theme);
+    };
+
+    setTheme(getPreferred());
+
+    toggle.addEventListener('click', () => {
+        const isLight = document.documentElement.classList.contains('light');
+        setTheme(isLight ? 'dark' : 'light');
+    });
+}
+
+// ==================== INIT ====================
 function init() {
     startBackground();
+    window.addEventListener('resize', startBackground);
 
-    // Resize handler
-    window.addEventListener('resize', () => {
-        startBackground();
-    });
-
-    // New: Scroll-activated glow
     initScrollGlow();
-
-    // Scroll progress bar
     initProgressBar();
+    initTheme();
 }
 
-// Run when DOM is ready
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
 } else {

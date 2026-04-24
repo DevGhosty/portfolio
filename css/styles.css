@@ -1,40 +1,98 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap');
 
+:root {
+    --bg: #000000;
+    --text: #e2e8f0;
+    --card: #0f172a;
+    --accent: #60a5fa;
+    --border: rgba(255, 255, 255, 0.1);
+    --section-bg: #020617;
+    --card-hover: #1e2937;
+}
+
+html.light {
+    --bg: #f8fafc;
+    --text: #1e2937;
+    --card: #ffffff;
+    --accent: #3b82f6;
+    --border: rgba(0, 0, 0, 0.1);
+    --section-bg: #f1f5f9;
+    --card-hover: #f8fafc;
+}
+
 html {
     scroll-behavior: smooth;
     scroll-padding-top: 80px;
-    /* Prevents navbar from covering section titles */
 }
 
 body {
-    background: #000000;
-    color: #e2e8f0;
+    background: var(--bg);
+    color: var(--text);
     font-family: 'Inter', system_ui, sans-serif;
 }
 
-/* Scroll Progress Indicator */
+/* Theme Toggle */
+#theme-toggle {
+    background: #27272a;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+html.light #theme-toggle {
+    background: #f59e0b;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#toggle-track {
+    background: transparent;
+}
+
+#sun-icon {
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+#moon-icon {
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+
+html.light #sun-icon {
+    opacity: 1;
+}
+
+html.light #moon-icon {
+    opacity: 0;
+}
+
+#toggle-knob {
+    transform: translateX(0);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+html.light #toggle-knob {
+    transform: translateX(24px);
+}
+
+/* Progress Bar */
 #progress-bar {
     position: fixed;
     top: 0;
     left: 0;
     height: 3px;
-    background: linear-gradient(to right, #60a5fa, #3b82f6);
+    background: linear-gradient(to right, var(--accent), #2563eb);
     z-index: 9999;
     width: 0%;
     transition: width 0.1s ease-out;
     pointer-events: none;
 }
 
+/* Glow Effect */
 .accent-blue {
-    color: #60a5fa;
-    /* Base subtle glow - always visible */
-    text-shadow:
-        0 0 10px rgba(96, 165, 250, 0.6),
-        0 0 20px rgba(96, 165, 250, 0.4);
+    color: var(--accent);
+    text-shadow: 0 0 10px rgba(96, 165, 250, 0.6), 0 0 20px rgba(96, 165, 250, 0.4);
     transition: text-shadow 0.6s ease-out;
 }
 
-/* Slower, more gradual pulsing glow */
 .accent-blue.in-view {
     animation: lightning-glow 5s infinite ease-in-out;
 }
@@ -43,47 +101,56 @@ body {
 
     0%,
     100% {
-        text-shadow:
-            0 0 12px rgba(96, 165, 250, 0.75),
-            0 0 25px rgba(96, 165, 250, 0.55),
-            0 0 45px rgba(96, 165, 250, 0.35);
+        text-shadow: 0 0 12px rgba(96, 165, 250, 0.75), 0 0 25px rgba(96, 165, 250, 0.55), 0 0 45px rgba(96, 165, 250, 0.35);
     }
 
     25% {
-        text-shadow:
-            0 0 18px rgba(96, 165, 250, 0.95),
-            0 0 38px rgba(96, 165, 250, 0.8),
-            0 0 65px rgba(96, 165, 250, 0.55),
-            0 0 90px rgba(96, 165, 250, 0.3);
+        text-shadow: 0 0 18px rgba(96, 165, 250, 0.95), 0 0 38px rgba(96, 165, 250, 0.8), 0 0 65px rgba(96, 165, 250, 0.55), 0 0 90px rgba(96, 165, 250, 0.3);
     }
 
     50% {
-        text-shadow:
-            0 0 14px rgba(96, 165, 250, 0.85),
-            0 0 30px rgba(96, 165, 250, 0.65),
-            0 0 55px rgba(96, 165, 250, 0.45);
+        text-shadow: 0 0 14px rgba(96, 165, 250, 0.85), 0 0 30px rgba(96, 165, 250, 0.65), 0 0 55px rgba(96, 165, 250, 0.45);
     }
 
     75% {
-        text-shadow:
-            0 0 20px rgba(96, 165, 250, 0.98),
-            0 0 42px rgba(96, 165, 250, 0.85),
-            0 0 75px rgba(96, 165, 250, 0.6),
-            0 0 100px rgba(96, 165, 250, 0.25);
+        text-shadow: 0 0 20px rgba(96, 165, 250, 0.98), 0 0 42px rgba(96, 165, 250, 0.85), 0 0 75px rgba(96, 165, 250, 0.6), 0 0 100px rgba(96, 165, 250, 0.25);
     }
 }
 
-.hero-bg {
-    position: relative;
-    overflow: hidden;
+/* Section & Card Fixes */
+section {
+    background: var(--section-bg);
 }
 
+#about,
+#projects,
+#contact {
+    background: var(--bg);
+}
+
+#skills .grid>div,
+#projects .grid>div {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+#skills .grid>div:hover,
+#projects .grid>div:hover {
+    background: var(--card-hover);
+    border-color: var(--accent);
+    transform: translateY(-4px);
+}
+
+/* Canvas - Critical Fix */
 canvas#bg-canvas {
-    position: fixed;
+    position: fixed !important;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1;
+    z-index: -1 !important;
     opacity: 0.75;
+    pointer-events: none;
 }

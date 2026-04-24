@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Steven Rosas — Software Engineer & Game Developer based in Seattle">
-  <title>Ghosty | Portfolio</title>
+  <title>Steven Rosas | Portfolio</title>
 
   <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -19,7 +19,7 @@
 
 <body class="min-h-screen">
 
-  <!-- Dynamic Background Canvas -->
+  <!-- Dynamic Background Canvas - Must be the first element in body -->
   <canvas id="bg-canvas" aria-hidden="true"></canvas>
 
   <!-- NAV -->
@@ -35,10 +35,24 @@
         <a href="#contact" class="hover:text-blue-400 transition-colors">Contact</a>
       </div>
 
-      <button onclick="toggleMobileMenu()" class="md:hidden text-2xl" aria-label="Toggle mobile menu"
-        aria-expanded="false">
-        <i class="fa-solid fa-bars"></i>
-      </button>
+      <div class="flex items-center gap-4">
+        <!-- Sliding Theme Toggle -->
+        <button id="theme-toggle"
+          class="relative w-14 h-8 rounded-full p-1 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          aria-label="Toggle dark/light mode">
+          <div id="toggle-track"
+            class="absolute inset-0 rounded-full transition-all duration-300 flex items-center px-1">
+            <span id="sun-icon" class="text-yellow-300 text-lg transition-opacity">☀️</span>
+            <span id="moon-icon" class="text-slate-200 text-lg transition-opacity ml-auto">🌙</span>
+          </div>
+          <div id="toggle-knob" class="relative w-6 h-6 bg-white rounded-full shadow-lg transition-all duration-300">
+          </div>
+        </button>
+
+        <button onclick="toggleMobileMenu()" class="md:hidden text-2xl" aria-label="Toggle mobile menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
     </div>
   </nav>
 
