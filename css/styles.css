@@ -1,9 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap');
 
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+    /* Prevents navbar from covering section titles */
+}
+
 body {
     background: #000000;
     color: #e2e8f0;
     font-family: 'Inter', system_ui, sans-serif;
+}
+
+/* Scroll Progress Indicator */
+#progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(to right, #60a5fa, #3b82f6);
+    z-index: 9999;
+    width: 0%;
+    transition: width 0.1s ease-out;
+    pointer-events: none;
 }
 
 .accent-blue {
@@ -15,12 +34,11 @@ body {
     transition: text-shadow 0.6s ease-out;
 }
 
-/* Slower, more gradual pulsing glow (lightning-inspired but smoother) */
+/* Slower, more gradual pulsing glow */
 .accent-blue.in-view {
     animation: lightning-glow 5s infinite ease-in-out;
 }
 
-/* Stronger, gradual pulses */
 @keyframes lightning-glow {
 
     0%,

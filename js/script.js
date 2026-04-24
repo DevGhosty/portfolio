@@ -132,6 +132,24 @@ function toggleMobileMenu() {
     alert("Mobile menu coming soon — let me know if you want it expanded!");
 }
 
+// ==================== SCROLL PROGRESS INDICATOR ====================
+function initProgressBar() {
+    const progressBar = document.createElement('div');
+    progressBar.id = 'progress-bar';
+    document.body.appendChild(progressBar);
+
+    function updateProgress() {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        progressBar.style.width = `${scrollPercent}%`;
+    }
+
+    window.addEventListener('scroll', updateProgress);
+    // Initial call
+    updateProgress();
+}
+
 // ==================== INITIALIZATION & CLEANUP ====================
 function init() {
     startBackground();
@@ -143,6 +161,9 @@ function init() {
 
     // New: Scroll-activated glow
     initScrollGlow();
+
+    // Scroll progress bar
+    initProgressBar();
 }
 
 // Run when DOM is ready
