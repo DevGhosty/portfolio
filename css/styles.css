@@ -231,3 +231,8 @@ html:not(.dark) footer {
 .accent-blue {
     color: var(--accent) !important;
 }
+
+#form-submit:disabled {
+    cursor: wait;
+    opacity: 0.8;
+}

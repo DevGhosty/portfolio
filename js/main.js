@@ -6,6 +6,7 @@ function init() {
     initScrollGlow();
     initProgressBar();
     initTheme();
+    initContactForm();
 }
 
 if (document.readyState === 'loading') {

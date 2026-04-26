@@ -4,8 +4,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Steven Rosas — Software Engineer & Game Developer based in Seattle">
+  <meta name="description" content="Steven Rosas - Software Engineer and Game Developer based in Washington">
+  <meta name="theme-color" content="#000000">
+  <meta property="og:title" content="Steven Rosas | Portfolio">
+  <meta property="og:description" content="Software engineer and game developer building immersive digital experiences.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="favicon.svg">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Steven Rosas | Portfolio">
+  <meta name="twitter:description"
+    content="Software engineer and game developer building immersive digital experiences.">
   <title>Steven Rosas | Portfolio</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
   <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -36,14 +46,13 @@
       </div>
 
       <div class="flex items-center gap-4">
-        <!-- Sliding Theme Toggle -->
         <button id="theme-toggle"
           class="relative w-14 h-8 rounded-full p-1 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
           aria-label="Toggle dark/light mode">
           <div id="toggle-track"
             class="absolute inset-0 rounded-full transition-all duration-300 flex items-center px-1">
-            <span id="sun-icon" class="text-yellow-300 text-lg transition-opacity">☀️</span>
-            <span id="moon-icon" class="text-slate-200 text-lg transition-opacity ml-auto">🌙</span>
+            <span id="sun-icon" class="text-yellow-300 text-lg transition-opacity">Sun</span>
+            <span id="moon-icon" class="text-slate-200 text-lg transition-opacity ml-auto">Moon</span>
           </div>
           <div id="toggle-knob" class="relative w-6 h-6 bg-white rounded-full shadow-lg transition-all duration-300">
           </div>
@@ -63,7 +72,7 @@
         <h1 class="text-6xl md:text-7xl font-bold tracking-tighter leading-none accent-blue">
           Steven Rosas
         </h1>
-        <p class="text-2xl md:text-3xl mt-4 text-slate-400">Software Engineer • Game Developer</p>
+        <p class="text-2xl md:text-3xl mt-4 text-slate-400">Software Engineer and Game Developer</p>
         <p class="mt-6 text-slate-400 max-w-md">Washington based. Building immersive digital experiences with code and
           pixels.</p>
 
@@ -91,7 +100,8 @@
       <div class="relative flex justify-center">
         <div
           class="w-72 h-72 rounded-3xl bg-gradient-to-br from-blue-900/30 to-slate-900/50 border border-blue-500/30 flex items-center justify-center backdrop-blur-sm">
-          <div class="text-9xl drop-shadow-2xl" aria-hidden="true">👻</div>
+          <div class="text-4xl md:text-5xl font-semibold accent-blue text-center px-6" aria-hidden="true">Build.
+            Ship.</div>
         </div>
       </div>
     </div>
@@ -102,18 +112,18 @@
     <h2 class="text-4xl font-semibold mb-8 accent-blue">About Me</h2>
     <div class="grid md:grid-cols-2 gap-12">
       <div class="text-slate-300 leading-relaxed space-y-6">
-        <p>I am a junior undergraduate Computer Science & Software Engineering major at the University of Washington.
-          Specializing in back end systems and game development, I
-          am passionate about crafting high-performance digital experiences.</p>
-        <p>Whether it's interactive websites, 3D visuals, or experimental interfaces — I thrive at the intersection of
+        <p>I am a junior undergraduate Computer Science and Software Engineering major at the University of Washington.
+          Specializing in back end systems and game development, I am passionate about crafting high-performance
+          digital experiences.</p>
+        <p>Whether it's interactive websites, 3D visuals, or experimental interfaces, I thrive at the intersection of
           design and code.</p>
       </div>
       <div class="bg-slate-900/30 border border-blue-900/30 backdrop-blur-sm rounded-3xl p-8">
         <h3 class="text-blue-400 mb-6">Currently exploring</h3>
         <ul class="space-y-4">
-          <li class="flex gap-4"><span class="text-blue-400">→</span> Real-time web experiences</li>
-          <li class="flex gap-4"><span class="text-blue-400">→</span> Cloud-based applications</li>
-          <li class="flex gap-4"><span class="text-blue-400">→</span> Open-source tools</li>
+          <li class="flex gap-4"><span class="text-blue-400">-></span> Real-time web experiences</li>
+          <li class="flex gap-4"><span class="text-blue-400">-></span> Cloud-based applications</li>
+          <li class="flex gap-4"><span class="text-blue-400">-></span> Open-source tools</li>
         </ul>
       </div>
     </div>
@@ -151,12 +161,13 @@
     <div class="grid md:grid-cols-3 gap-8">
       <div
         class="group bg-slate-900/70 border border-blue-900/30 hover:border-blue-500 rounded-3xl overflow-hidden transition-all">
-        <div class="h-60 bg-gradient-to-br from-blue-900 to-slate-900 flex items-center justify-center text-7xl">🌌
+        <div class="h-60 bg-gradient-to-br from-blue-900 to-slate-900 flex items-center justify-center text-4xl">
+          Nebula
         </div>
         <div class="p-6">
           <h3 class="font-semibold text-xl">Nebula UI Kit</h3>
           <p class="text-slate-400 mt-2">Dark futuristic component library with dynamic animations.</p>
-          <a href="#" class="text-blue-400 mt-6 inline-flex items-center gap-2">View case study →</a>
+          <span class="text-blue-400 mt-6 inline-flex items-center gap-2">Case study coming soon</span>
         </div>
       </div>
       <!-- Add more projects here by copying the card above -->
@@ -166,25 +177,34 @@
   <!-- CONTACT -->
   <section id="contact" class="bg-slate-900/20 border border-blue-900/20 backdrop-blur-sm rounded-3xl py-24">
     <div class="max-w-xl mx-auto px-6 text-center">
-      <h2 class="text-4xl font-semibold accent-blue">Let's connnect!</h2>
+      <h2 class="text-4xl font-semibold accent-blue">Let's connect!</h2>
       <p class="mt-4 text-slate-400">Open to internships, contract work, or just a chat about all things code and
         creativity.</p>
 
-      <form class="mt-12 space-y-6" action="https://formspree.io/f/YOUR_CODE" method="POST">
+      <form id="contact-form" class="mt-12 space-y-6 text-left" name="contact" method="POST" data-netlify="true"
+        netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="contact">
+        <p class="hidden">
+          <label>Do not fill this out: <input name="bot-field"></label>
+        </p>
         <input type="text" name="name" placeholder="Name"
-          class="w-full bg-black border border-slate-700 focus:border-blue-500 rounded-3xl px-6 py-5 outline-none">
+          class="w-full bg-black border border-slate-700 focus:border-blue-500 rounded-3xl px-6 py-5 outline-none"
+          required>
         <input type="email" name="email" placeholder="Email"
-          class="w-full bg-black border border-slate-700 focus:border-blue-500 rounded-3xl px-6 py-5 outline-none">
+          class="w-full bg-black border border-slate-700 focus:border-blue-500 rounded-3xl px-6 py-5 outline-none"
+          required>
         <textarea name="message" rows="5" placeholder="Message"
-          class="w-full bg-black border border-slate-700 focus:border-blue-500 rounded-3xl px-6 py-5 outline-none"></textarea>
-        <button type="submit"
+          class="w-full bg-black border border-slate-700 focus:border-blue-500 rounded-3xl px-6 py-5 outline-none"
+          required></textarea>
+        <p id="form-status" class="hidden rounded-3xl border px-5 py-4 text-sm" role="status" aria-live="polite"></p>
+        <button id="form-submit" type="submit"
           class="w-full bg-blue-600 hover:bg-blue-500 py-5 rounded-3xl font-semibold transition">Send Message</button>
       </form>
     </div>
   </section>
 
   <footer class="bg-black py-8 text-center text-slate-500 text-sm">
-    © 2026 DevGhosty
+    &copy; 2026 DevGhosty
   </footer>
 
   <!-- Custom JavaScript (refactored for scalability) -->
