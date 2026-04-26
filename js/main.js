@@ -5,6 +5,7 @@ function init() {
 
     initScrollGlow();
     initProgressBar();
+    initSectionLinks();
     initTheme();
     initContactForm();
 }

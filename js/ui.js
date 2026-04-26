@@ -28,6 +28,23 @@ function initProgressBar() {
     update();
 }
 
+// ==================== SECTION LINKS ====================
+function initSectionLinks() {
+    const links = document.querySelectorAll('a[href^="#"]');
+
+    links.forEach(link => {
+        link.addEventListener('click', (event) => {
+            const targetId = link.getAttribute('href');
+            const target = targetId ? document.querySelector(targetId) : null;
+            if (!target) return;
+
+            event.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            history.replaceState(null, '', `${window.location.pathname}${window.location.search}`);
+        });
+    });
+}
+
 // ==================== CONTACT FORM ====================
 function initContactForm() {
     const form = document.getElementById('contact-form');
@@ -79,5 +96,6 @@ function toggleMobileMenu() {
 
 window.initScrollGlow = initScrollGlow;
 window.initProgressBar = initProgressBar;
+window.initSectionLinks = initSectionLinks;
 window.initContactForm = initContactForm;
 window.toggleMobileMenu = toggleMobileMenu;

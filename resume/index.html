@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Steven Rosas resume">
+  <meta name="theme-color" content="#000000">
+  <title>Steven Rosas | Resume</title>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body class="min-h-screen">
+  <canvas id="bg-canvas" aria-hidden="true"></canvas>
+
+  <nav class="fixed top-0 w-full bg-black/80 backdrop-blur-md z-50 border-b border-white/10"
+    aria-label="Resume navigation">
+    <div class="max-w-6xl mx-auto px-6 py-5 flex justify-between items-center">
+      <a href="../home" class="text-3xl font-bold tracking-tighter accent-blue">Hello There<span
+          class="text-blue-400">.</span></a>
+
+      <div class="flex items-center gap-4">
+        <a href="../Steven-Rosas-Resume.pdf" download
+          class="border border-slate-500 hover:border-blue-400 px-6 py-3 rounded-3xl font-semibold transition-all">Download
+          PDF</a>
+        <button id="theme-toggle"
+          class="relative w-14 h-8 rounded-full p-1 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          aria-label="Toggle dark/light mode">
+          <div id="toggle-track"
+            class="absolute inset-0 rounded-full transition-all duration-300 flex items-center px-1">
+            <span id="sun-icon" class="text-yellow-300 text-lg transition-opacity">&#9728;&#65039;</span>
+            <span id="moon-icon" class="text-slate-200 text-lg transition-opacity ml-auto">&#127769;</span>
+          </div>
+          <div id="toggle-knob" class="relative w-6 h-6 bg-white rounded-full shadow-lg transition-all duration-300">
+          </div>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="pt-28 pb-10 px-6">
+    <section class="max-w-6xl mx-auto">
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
+        <div>
+          <h1 class="text-5xl md:text-6xl font-bold tracking-tighter accent-blue">Resume</h1>
+          <p class="mt-3 text-slate-400">View the current resume here or download the PDF.</p>
+        </div>
+      </div>
+
+      <div class="bg-slate-900/70 border border-blue-900/30 backdrop-blur-sm rounded-3xl overflow-hidden p-4 md:p-6">
+        <img src="../resume-preview.png" alt="Steven Rosas resume preview" class="w-full h-auto block rounded-2xl">
+      </div>
+    </section>
+  </main>
+
+  <script src="../js/particles.js"></script>
+  <script src="../js/theme.js"></script>
+  <script src="../js/ui.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+
+</html>
