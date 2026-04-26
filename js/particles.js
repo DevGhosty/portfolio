@@ -55,19 +55,45 @@ function initParticles() {
 }
 
 function drawConnections() {
-    ctx.strokeStyle = isDarkTheme()
-        ? 'rgba(96, 165, 250, 0.08)'
-        : 'rgba(59, 130, 246, 0.16)';
-    ctx.lineWidth = 0.5;
+    const darkTheme = isDarkTheme();
+    const time = performance.now() * 0.0015;
+    const maxDistSq = 120 * 120;
+
     for (let i = 0; i < particles.length; i++) {
+        const particleA = particles[i];
         for (let j = i + 1; j < particles.length; j++) {
-            const dx = particles[i].x - particles[j].x;
-            const dy = particles[i].y - particles[j].y;
-            const dist = Math.hypot(dx, dy);
-            if (dist < 120) {
+            const particleB = particles[j];
+            const dx = particleA.x - particleB.x;
+            const dy = particleA.y - particleB.y;
+            const distSq = dx * dx + dy * dy;
+            if (distSq < maxDistSq) {
+                const showPulse = (i + j) % 3 === 0;
+
+                ctx.strokeStyle = darkTheme
+                    ? 'rgba(96, 165, 250, 0.1)'
+                    : 'rgba(59, 130, 246, 0.16)';
+                ctx.lineWidth = 0.6;
                 ctx.beginPath();
-                ctx.moveTo(particles[i].x, particles[i].y);
-                ctx.lineTo(particles[j].x, particles[j].y);
+                ctx.moveTo(particleA.x, particleA.y);
+                ctx.lineTo(particleB.x, particleB.y);
+                ctx.stroke();
+
+                if (!showPulse) continue;
+
+                const pulse = (Math.sin(time + i * 0.9 + j * 0.35) + 1) * 0.5;
+                const travel = (time * 0.9 + i * 0.13 + j * 0.07) % 1;
+                const startX = particleA.x + (particleB.x - particleA.x) * Math.max(0, travel - 0.18);
+                const startY = particleA.y + (particleB.y - particleA.y) * Math.max(0, travel - 0.18);
+                const endX = particleA.x + (particleB.x - particleA.x) * travel;
+                const endY = particleA.y + (particleB.y - particleA.y) * travel;
+
+                ctx.strokeStyle = darkTheme
+                    ? `rgba(191, 219, 254, ${0.22 + pulse * 0.28})`
+                    : `rgba(15, 23, 42, ${0.16 + pulse * 0.24})`;
+                ctx.lineWidth = 0.9 + pulse * 0.45;
+                ctx.beginPath();
+                ctx.moveTo(startX, startY);
+                ctx.lineTo(endX, endY);
                 ctx.stroke();
             }
         }
