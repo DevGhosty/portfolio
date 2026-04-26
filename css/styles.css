@@ -172,19 +172,40 @@ html:not(.dark) {
 
 /* Global backgrounds & text */
 html:not(.dark) body,
-html:not(.dark) section,
 html:not(.dark) .bg-slate-950,
-html:not(.dark) .bg-slate-900,
-html:not(.dark) .bg-slate-900\/70,
-html:not(.dark) .bg-slate-900\/50 {
+html:not(.dark) .bg-slate-900 {
     background-color: var(--bg) !important;
     color: var(--text) !important;
 }
 
 /* Specific sections that need section-bg */
-html:not(.dark) #skills,
 html:not(.dark) #contact {
     background-color: var(--section-bg) !important;
+}
+
+html:not(.dark) #about,
+html:not(.dark) #skills,
+html:not(.dark) #projects {
+    background-color: transparent !important;
+}
+
+html:not(.dark) .bg-slate-900\/70 {
+    background-color: rgba(255, 255, 255, 0.45) !important;
+}
+
+html:not(.dark) .bg-slate-900\/50,
+html:not(.dark) .bg-slate-900\/30 {
+    background-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+html:not(.dark) #skills .grid>div,
+html:not(.dark) #projects .grid>div {
+    background: rgba(255, 255, 255, 0.35);
+}
+
+html:not(.dark) #skills .grid>div:hover,
+html:not(.dark) #projects .grid>div:hover {
+    background: rgba(255, 255, 255, 0.5);
 }
 
 /* Nav */
@@ -219,6 +240,10 @@ html:not(.dark) textarea {
     background-color: var(--card) !important;
     border-color: var(--border) !important;
     color: var(--text) !important;
+}
+
+html:not(.dark) #toggle-track {
+    color: inherit;
 }
 
 /* Footer */

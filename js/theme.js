@@ -6,8 +6,8 @@ function initTheme() {
         (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
 
     const setTheme = (theme) => {
-        // Native Tailwind dark mode — fully scalable forever
         document.documentElement.classList.toggle('dark', theme === 'dark');
+        document.documentElement.classList.toggle('light', theme === 'light');
         localStorage.setItem('theme', theme);
     };
 
@@ -19,5 +19,4 @@ function initTheme() {
     });
 }
 
-// Expose for main.js
 window.initTheme = initTheme;

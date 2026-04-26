@@ -7,6 +7,10 @@ let width = 0;
 let height = 0;
 let animationFrameId = null;
 
+function isDarkTheme() {
+    return document.documentElement.classList.contains('dark');
+}
+
 class Particle {
     constructor() { this.reset(); }
 
@@ -28,10 +32,9 @@ class Particle {
 
     draw() {
         const alpha = this.opacity;
-        // Native Tailwind 'dark' class — fully scalable
-        ctx.fillStyle = document.documentElement.classList.contains('dark')
+        ctx.fillStyle = isDarkTheme()
             ? `rgba(96, 165, 250, ${alpha})`
-            : `rgba(59, 130, 246, ${alpha})`;
+            : `rgba(148, 163, 184, ${alpha * 0.45})`;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fill();
@@ -52,7 +55,9 @@ function initParticles() {
 }
 
 function drawConnections() {
-    ctx.strokeStyle = 'rgba(96, 165, 250, 0.08)';
+    ctx.strokeStyle = isDarkTheme()
+        ? 'rgba(96, 165, 250, 0.08)'
+        : 'rgba(59, 130, 246, 0.16)';
     ctx.lineWidth = 0.5;
     for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
@@ -70,10 +75,10 @@ function drawConnections() {
 }
 
 function animate() {
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.08)';
+    ctx.fillStyle = isDarkTheme() ? 'rgba(0, 0, 0, 0.08)' : 'rgba(255, 255, 255, 0.2)';
     ctx.fillRect(0, 0, width, height);
 
-    particles.forEach(p => { p.update(); p.draw(); });
+    particles.forEach(particle => { particle.update(); particle.draw(); });
     drawConnections();
 
     animationFrameId = requestAnimationFrame(animate);
@@ -86,5 +91,4 @@ function startBackground() {
     animate();
 }
 
-// Expose for main.js
 window.startBackground = startBackground;
