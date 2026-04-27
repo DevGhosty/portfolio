@@ -9,6 +9,7 @@ function init() {
     initTheme();
     initContactForm();
     initProjectCarousel();
+    initMobileMenu();
 }
 
 if (document.readyState === 'loading') {

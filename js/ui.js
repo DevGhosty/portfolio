@@ -166,10 +166,18 @@ function toggleMobileMenu() {
     });
 }
 
+function initMobileMenu() {
+    const button = document.getElementById('mobile-menu-button');
+    if (!button) return;
+
+    button.addEventListener('click', toggleMobileMenu);
+}
+
 window.initScrollGlow = initScrollGlow;
 window.initProgressBar = initProgressBar;
 window.initSectionLinks = initSectionLinks;
 window.initContactForm = initContactForm;
 window.initProjectCarousel = initProjectCarousel;
+window.initMobileMenu = initMobileMenu;
 window.closeMobileMenu = closeMobileMenu;
 window.toggleMobileMenu = toggleMobileMenu;

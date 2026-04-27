@@ -1,0 +1,5 @@
+server.out
+server.err
+*.log
+.env
+.env.*
