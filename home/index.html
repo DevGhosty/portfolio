@@ -59,9 +59,18 @@
           </div>
         </button>
 
-        <button onclick="toggleMobileMenu()" class="md:hidden text-2xl" aria-label="Toggle mobile menu">
+        <button id="mobile-menu-button" onclick="toggleMobileMenu()" class="md:hidden text-2xl"
+          aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobile-menu">
           <i class="fa-solid fa-bars"></i>
         </button>
+      </div>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden border-t border-white/10 bg-black/90 px-6 py-4">
+      <div class="max-w-6xl mx-auto flex flex-col gap-3 text-sm font-medium">
+        <a href="#about" class="hover:text-blue-400 transition-colors">About</a>
+        <a href="#projects" class="hover:text-blue-400 transition-colors">Projects</a>
+        <a href="#skills" class="hover:text-blue-400 transition-colors">Skills</a>
+        <a href="#contact" class="hover:text-blue-400 transition-colors">Contact</a>
       </div>
     </div>
   </nav>
@@ -70,22 +79,22 @@
   <header id="hero" class="hero-bg min-h-screen flex items-center pt-20 relative">
     <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center z-10">
       <div>
-        <h1 class="text-6xl md:text-7xl font-bold tracking-tighter leading-none accent-blue">
+        <h1 class="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tighter leading-none accent-blue">
           Steven Rosas
         </h1>
         <p class="text-2xl md:text-3xl mt-4 text-slate-400">Software Engineer and Game Developer</p>
         <p class="mt-6 text-slate-400 max-w-md">Washington based. Building immersive digital experiences with code and
           pixels.</p>
 
-        <div class="mt-10 flex gap-4">
+        <div class="mt-10 flex flex-col sm:flex-row gap-4">
           <a href="#projects"
-            class="bg-blue-500 hover:bg-blue-600 px-8 py-4 rounded-3xl font-semibold transition-all active:scale-95">View
+            class="bg-blue-500 hover:bg-blue-600 px-8 py-4 rounded-3xl font-semibold text-center transition-all active:scale-95">View
             Projects</a>
           <a href="#contact"
-            class="border border-slate-500 hover:border-blue-400 px-8 py-4 rounded-3xl font-semibold transition-all">Let's
+            class="border border-slate-500 hover:border-blue-400 px-8 py-4 rounded-3xl font-semibold text-center transition-all">Let's
             Talk</a>
           <a href="../resume"
-            class="border border-slate-500 hover:border-blue-400 px-8 py-4 rounded-3xl font-semibold transition-all">Resume</a>
+            class="border border-slate-500 hover:border-blue-400 px-8 py-4 rounded-3xl font-semibold text-center transition-all">Resume</a>
         </div>
 
         <div class="mt-16 flex gap-8 text-sm">
@@ -111,7 +120,7 @@
   </header>
 
   <!-- ABOUT -->
-  <section id="about" class="max-w-6xl mx-auto px-6 py-24 bg-transparent backdrop-blur-sm rounded-3xl">
+  <section id="about" class="max-w-6xl mx-auto px-6 py-16 md:py-24 bg-transparent backdrop-blur-sm rounded-3xl">
     <h2 class="text-4xl font-semibold mb-8 accent-blue">About Me</h2>
     <div class="grid md:grid-cols-2 gap-12">
       <div class="text-slate-300 leading-relaxed space-y-6">
@@ -133,8 +142,8 @@
   </section>
 
   <!-- SKILLS -->
-  <section id="skills" class="max-w-6xl mx-auto px-6 py-24 bg-transparent backdrop-blur-sm rounded-3xl">
-    <div class="max-w-6xl mx-auto px-6">
+  <section id="skills" class="max-w-6xl mx-auto px-6 py-16 md:py-24 bg-transparent backdrop-blur-sm rounded-3xl">
+    <div class="max-w-6xl mx-auto">
       <h2 class="text-4xl font-semibold mb-12 accent-blue">Skills &amp; Toolbox</h2>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
         <div class="bg-slate-900 hover:bg-slate-800 border border-blue-900/50 p-6 rounded-3xl text-center transition">
@@ -159,26 +168,44 @@
   </section>
 
   <!-- PROJECTS -->
-  <section id="projects" class="max-w-6xl mx-auto px-6 py-24 bg-transparent backdrop-blur-sm rounded-3xl">
+  <section id="projects" class="max-w-6xl mx-auto px-6 py-16 md:py-24 bg-transparent backdrop-blur-sm rounded-3xl">
     <h2 class="text-4xl font-semibold mb-12 accent-blue">Featured Work</h2>
-    <div class="grid md:grid-cols-3 gap-8">
+    <div class="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory md:grid md:grid-cols-3 md:gap-8 md:overflow-visible md:pb-0">
       <div
-        class="group bg-slate-900/70 border border-blue-900/30 hover:border-blue-500 rounded-3xl overflow-hidden transition-all">
-        <div class="h-60 bg-gradient-to-br from-blue-900 to-slate-900 flex items-center justify-center text-4xl">
-          Nebula
+        class="group min-w-[86vw] snap-start md:min-w-0 md:col-span-2 flex h-full flex-col bg-slate-900/70 border border-blue-900/30 hover:border-blue-500 rounded-3xl overflow-hidden shadow-xl shadow-blue-950/20 transition-all">
+        <div class="aspect-[1280/401] overflow-hidden bg-white">
+          <img src="../icare-preview.svg" alt="iCare healthcare chatbot system diagram" class="block h-full w-full object-contain p-3">
         </div>
-        <div class="p-6">
-          <h3 class="font-semibold text-xl">Nebula UI Kit</h3>
-          <p class="text-slate-400 mt-2">Dark futuristic component library with dynamic animations.</p>
-          <span class="text-blue-400 mt-6 inline-flex items-center gap-2">Case study coming soon</span>
+        <div class="flex flex-1 flex-col p-5 md:p-7">
+          <h3 class="font-semibold text-xl md:text-2xl">iCare - Intelligent Healthcare for Mental and Behavior Health</h3>
+          <p class="text-slate-400 mt-3 leading-relaxed">The iCare project aims to provide support for people with mental health issues through two chatbots: the Carebot and Coachbot.</p>
+          <a href="https://depts.washington.edu/uwbur/listing/cocobot-natural-language-processing-nlp-for-behavioral-and-mental-health/"
+            class="text-blue-400 hover:text-blue-300 mt-6 inline-flex items-center gap-2 font-semibold transition-colors">Project Link -&gt;</a>
         </div>
       </div>
-      <!-- Add more projects here by copying the card above -->
+      <div
+        class="group min-w-[86vw] snap-start md:min-w-0 flex h-full flex-col bg-slate-900/70 border border-blue-900/30 hover:border-blue-500 rounded-3xl overflow-hidden transition-all">
+        <div class="flex aspect-[1280/430] items-center justify-center bg-slate-950 text-3xl font-semibold accent-blue">Project 2
+        </div>
+        <div class="flex flex-1 flex-col p-5 md:p-6">
+          <h3 class="font-semibold text-xl">Coming Soon</h3>
+          <p class="text-slate-400 mt-2">Placeholder for the next featured project.</p>
+        </div>
+      </div>
+      <div
+        class="group min-w-[86vw] snap-start md:min-w-0 flex h-full flex-col bg-slate-900/70 border border-blue-900/30 hover:border-blue-500 rounded-3xl overflow-hidden transition-all">
+        <div class="flex aspect-[1280/430] items-center justify-center bg-slate-950 text-3xl font-semibold accent-blue">Project 3
+        </div>
+        <div class="flex flex-1 flex-col p-5 md:p-6">
+          <h3 class="font-semibold text-xl">Coming Soon</h3>
+          <p class="text-slate-400 mt-2">Placeholder for the next featured project.</p>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- CONTACT -->
-  <section id="contact" class="bg-slate-900/20 border border-blue-900/20 backdrop-blur-sm rounded-3xl py-24">
+  <section id="contact" class="bg-slate-900/20 border border-blue-900/20 backdrop-blur-sm rounded-3xl py-16 md:py-24">
     <div class="max-w-xl mx-auto px-6 text-center">
       <h2 class="text-4xl font-semibold accent-blue">Let's connect!</h2>
       <p class="mt-4 text-slate-400">Open to internships, contract work, or just a chat about all things code and
