@@ -4,16 +4,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Steven Rosas - Software Engineer and Game Developer based in Washington">
+  <meta name="description" content="Steven Rosas - AI-focused software engineer building LLM workflows, web systems, and immersive digital experiences.">
   <meta name="theme-color" content="#000000">
   <meta property="og:title" content="Steven Rosas | Portfolio">
-  <meta property="og:description" content="Software engineer and game developer building immersive digital experiences.">
+  <meta property="og:description" content="AI-focused software engineer building LLM workflows, web systems, and immersive digital experiences.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="favicon.svg">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Steven Rosas | Portfolio">
   <meta name="twitter:description"
-    content="Software engineer and game developer building immersive digital experiences.">
+    content="AI-focused software engineer building LLM workflows, web systems, and immersive digital experiences.">
   <title>Steven Rosas | Portfolio</title>
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
 
@@ -68,8 +68,8 @@
     <div id="mobile-menu" class="mobile-menu-panel md:hidden border-t border-white/10 bg-black/90 px-6" aria-hidden="true">
       <div class="max-w-6xl mx-auto flex flex-col gap-3 text-sm font-medium">
         <a href="#about" class="hover:text-blue-400 transition-colors" tabindex="-1">About</a>
-        <a href="#projects" class="hover:text-blue-400 transition-colors" tabindex="-1">Projects</a>
         <a href="#skills" class="hover:text-blue-400 transition-colors" tabindex="-1">Skills</a>
+        <a href="#projects" class="hover:text-blue-400 transition-colors" tabindex="-1">Projects</a>
         <a href="#contact" class="hover:text-blue-400 transition-colors" tabindex="-1">Contact</a>
       </div>
     </div>
@@ -82,9 +82,10 @@
         <h1 class="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tighter leading-none accent-blue">
           Steven Rosas
         </h1>
-        <p class="text-2xl md:text-3xl mt-4 text-slate-400">Software Engineer and Game Developer</p>
-        <p class="mt-6 text-slate-400 max-w-md">Washington based. Building immersive digital experiences with code and
-          pixels.</p>
+        <p class="text-2xl md:text-3xl mt-4 text-slate-400">Software Engineer focused on AI systems, developer tools,
+          and immersive web experiences</p>
+        <p class="mt-6 text-slate-400 max-w-md">Washington based. Building human-centered software with LLM workflows,
+          backend systems, and thoughtful interfaces.</p>
 
         <div class="mt-10 flex flex-col sm:flex-row gap-4">
           <a href="#projects"
@@ -124,11 +125,10 @@
     <h2 class="text-4xl font-semibold mb-8 accent-blue">About Me</h2>
     <div class="grid md:grid-cols-2 gap-12">
       <div class="text-slate-300 leading-relaxed space-y-6">
-        <p>I am a junior undergraduate Computer Science and Software Engineering major at the University of Washington.
-          Specializing in back end systems and game development, I am passionate about crafting high-performance
-          digital experiences.</p>
-        <p>Whether it's interactive websites, 3D visuals, or experimental interfaces, I thrive at the intersection of
-          design and code.</p>
+        <p>I am a junior undergraduate Computer Science and Software Engineering major at the University of Washington,
+          focused on AI-assisted systems, backend software engineering, and human-centered tools.</p>
+        <p>I enjoy building practical web experiences and developer workflows, with game development and interactive
+          interfaces continuing to shape how I think about performance, usability, and design.</p>
       </div>
       <div class="bg-slate-900/30 border border-blue-900/30 backdrop-blur-sm rounded-3xl p-8">
         <h3 class="text-blue-400 mb-6">Currently exploring</h3>
@@ -169,11 +169,27 @@
 
   <!-- PROJECTS -->
   <section id="projects" class="max-w-6xl mx-auto px-6 py-16 md:py-24 bg-transparent backdrop-blur-sm rounded-3xl">
-    <h2 class="text-4xl font-semibold mb-12 accent-blue">Featured Work</h2>
-    <p class="md:hidden -mt-8 mb-5 text-sm text-slate-400">Swipe left to see more projects -&gt;</p>
-    <div class="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory md:grid md:grid-cols-3 md:gap-8 md:overflow-visible md:pb-0">
+    <div class="flex items-center justify-between gap-4 mb-8">
+      <div>
+        <h2 class="text-4xl font-semibold accent-blue">Featured Work</h2>
+        <p class="mt-3 text-sm text-slate-400">Swipe or drag to see more projects -&gt;</p>
+      </div>
+      <div class="flex gap-3">
+        <button type="button" data-project-prev
+          class="border border-slate-500 hover:border-blue-400 rounded-full w-11 h-11 transition-colors"
+          aria-label="Previous project">
+          <i class="fa-solid fa-arrow-left"></i>
+        </button>
+        <button type="button" data-project-next
+          class="border border-slate-500 hover:border-blue-400 rounded-full w-11 h-11 transition-colors"
+          aria-label="Next project">
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+    </div>
+    <div id="project-carousel" class="project-carousel flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory">
       <div
-        class="group min-w-[86vw] snap-start md:min-w-0 md:col-span-2 flex h-full flex-col bg-slate-900/70 border border-blue-900/30 hover:border-blue-500 rounded-3xl overflow-hidden shadow-xl shadow-blue-950/20 transition-all">
+        class="group min-w-[86vw] md:min-w-full snap-start flex h-full flex-col bg-slate-900/70 border border-blue-900/30 hover:border-blue-500 rounded-3xl overflow-hidden shadow-xl shadow-blue-950/20 transition-all">
         <div class="aspect-[1280/401] overflow-hidden bg-white">
           <img src="../icare-preview.svg" alt="iCare healthcare chatbot system diagram" class="block h-full w-full object-contain p-3">
         </div>
@@ -185,21 +201,24 @@
         </div>
       </div>
       <div
-        class="group min-w-[86vw] snap-start md:min-w-0 flex h-full flex-col bg-slate-900/70 border border-blue-900/30 hover:border-blue-500 rounded-3xl overflow-hidden transition-all">
-        <div class="flex aspect-[1280/430] items-center justify-center bg-slate-950 text-3xl font-semibold accent-blue">Project 2
+        class="group min-w-[86vw] md:min-w-full snap-start flex h-full flex-col bg-slate-900/70 border border-blue-900/30 hover:border-blue-500 rounded-3xl overflow-hidden transition-all">
+        <div class="aspect-[16/9] overflow-hidden bg-white">
+          <img src="../google-logo.svg" alt="Google logo" class="block h-full w-full object-contain">
         </div>
         <div class="flex flex-1 flex-col p-5 md:p-6">
-          <h3 class="font-semibold text-xl">Coming Soon</h3>
-          <p class="text-slate-400 mt-2">Placeholder for the next featured project.</p>
+          <h3 class="font-semibold text-xl">Google - Associate Software Developer Intern</h3>
+          <p class="text-slate-400 mt-2">Worked on LLM prompt quality, task alignment, model behavior guidance, and structured content workflows across classification, summarization, and code transformation use cases.</p>
+          <a href="../resume"
+            class="text-blue-400 hover:text-blue-300 mt-6 inline-flex items-center gap-2 font-semibold transition-colors">View Resume -&gt;</a>
         </div>
       </div>
       <div
-        class="group min-w-[86vw] snap-start md:min-w-0 flex h-full flex-col bg-slate-900/70 border border-blue-900/30 hover:border-blue-500 rounded-3xl overflow-hidden transition-all">
-        <div class="flex aspect-[1280/430] items-center justify-center bg-slate-950 text-3xl font-semibold accent-blue">Project 3
+        class="group min-w-[86vw] md:min-w-full snap-start flex h-full flex-col bg-slate-900/70 border border-blue-900/30 hover:border-blue-500 rounded-3xl overflow-hidden transition-all">
+        <div class="flex aspect-[1280/430] items-center justify-center bg-slate-950 text-3xl font-semibold accent-blue">Soon
         </div>
         <div class="flex flex-1 flex-col p-5 md:p-6">
-          <h3 class="font-semibold text-xl">Coming Soon</h3>
-          <p class="text-slate-400 mt-2">Placeholder for the next featured project.</p>
+          <h3 class="font-semibold text-xl">More Work Coming Soon</h3>
+          <p class="text-slate-400 mt-2">Additional software and AI projects will be added here.</p>
         </div>
       </div>
     </div>

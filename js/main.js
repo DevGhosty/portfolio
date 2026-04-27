@@ -8,6 +8,7 @@ function init() {
     initSectionLinks();
     initTheme();
     initContactForm();
+    initProjectCarousel();
 }
 
 if (document.readyState === 'loading') {

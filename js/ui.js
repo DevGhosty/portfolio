@@ -90,6 +90,50 @@ function initContactForm() {
     });
 }
 
+// ==================== PROJECT CAROUSEL ====================
+function initProjectCarousel() {
+    const carousel = document.getElementById('project-carousel');
+    const previous = document.querySelector('[data-project-prev]');
+    const next = document.querySelector('[data-project-next]');
+
+    if (!carousel || !previous || !next) return;
+
+    const scrollByPage = (direction) => {
+        carousel.scrollBy({ left: direction * carousel.clientWidth, behavior: 'smooth' });
+    };
+
+    previous.addEventListener('click', () => scrollByPage(-1));
+    next.addEventListener('click', () => scrollByPage(1));
+
+    let isDragging = false;
+    let startX = 0;
+    let startScrollLeft = 0;
+
+    carousel.addEventListener('pointerdown', (event) => {
+        if (event.pointerType === 'touch') return;
+        isDragging = true;
+        startX = event.clientX;
+        startScrollLeft = carousel.scrollLeft;
+        carousel.classList.add('is-dragging');
+        carousel.setPointerCapture(event.pointerId);
+    });
+
+    carousel.addEventListener('pointermove', (event) => {
+        if (!isDragging) return;
+        event.preventDefault();
+        carousel.scrollLeft = startScrollLeft - (event.clientX - startX);
+    });
+
+    const stopDragging = () => {
+        isDragging = false;
+        carousel.classList.remove('is-dragging');
+    };
+
+    carousel.addEventListener('pointerup', stopDragging);
+    carousel.addEventListener('pointercancel', stopDragging);
+    carousel.addEventListener('mouseleave', stopDragging);
+}
+
 // ==================== MOBILE MENU ====================
 function closeMobileMenu() {
     const menu = document.getElementById('mobile-menu');
@@ -126,5 +170,6 @@ window.initScrollGlow = initScrollGlow;
 window.initProgressBar = initProgressBar;
 window.initSectionLinks = initSectionLinks;
 window.initContactForm = initContactForm;
+window.initProjectCarousel = initProjectCarousel;
 window.closeMobileMenu = closeMobileMenu;
 window.toggleMobileMenu = toggleMobileMenu;
