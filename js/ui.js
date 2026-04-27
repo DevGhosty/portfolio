@@ -97,8 +97,10 @@ function closeMobileMenu() {
 
     if (!menu || !button) return;
 
-    menu.classList.add('hidden');
+    menu.classList.remove('is-open');
+    menu.setAttribute('aria-hidden', 'true');
     button.setAttribute('aria-expanded', 'false');
+    menu.querySelectorAll('a').forEach(link => link.setAttribute('tabindex', '-1'));
 }
 
 function toggleMobileMenu() {
@@ -107,9 +109,17 @@ function toggleMobileMenu() {
 
     if (!menu || !button) return;
 
-    const isOpen = !menu.classList.contains('hidden');
-    menu.classList.toggle('hidden', isOpen);
+    const isOpen = menu.classList.contains('is-open');
+    menu.classList.toggle('is-open', !isOpen);
+    menu.setAttribute('aria-hidden', String(isOpen));
     button.setAttribute('aria-expanded', String(!isOpen));
+    menu.querySelectorAll('a').forEach(link => {
+        if (isOpen) {
+            link.setAttribute('tabindex', '-1');
+        } else {
+            link.removeAttribute('tabindex');
+        }
+    });
 }
 
 window.initScrollGlow = initScrollGlow;

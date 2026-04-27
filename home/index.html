@@ -65,12 +65,12 @@
         </button>
       </div>
     </div>
-    <div id="mobile-menu" class="hidden md:hidden border-t border-white/10 bg-black/90 px-6 py-4">
+    <div id="mobile-menu" class="mobile-menu-panel md:hidden border-t border-white/10 bg-black/90 px-6" aria-hidden="true">
       <div class="max-w-6xl mx-auto flex flex-col gap-3 text-sm font-medium">
-        <a href="#about" class="hover:text-blue-400 transition-colors">About</a>
-        <a href="#projects" class="hover:text-blue-400 transition-colors">Projects</a>
-        <a href="#skills" class="hover:text-blue-400 transition-colors">Skills</a>
-        <a href="#contact" class="hover:text-blue-400 transition-colors">Contact</a>
+        <a href="#about" class="hover:text-blue-400 transition-colors" tabindex="-1">About</a>
+        <a href="#projects" class="hover:text-blue-400 transition-colors" tabindex="-1">Projects</a>
+        <a href="#skills" class="hover:text-blue-400 transition-colors" tabindex="-1">Skills</a>
+        <a href="#contact" class="hover:text-blue-400 transition-colors" tabindex="-1">Contact</a>
       </div>
     </div>
   </nav>
@@ -170,6 +170,7 @@
   <!-- PROJECTS -->
   <section id="projects" class="max-w-6xl mx-auto px-6 py-16 md:py-24 bg-transparent backdrop-blur-sm rounded-3xl">
     <h2 class="text-4xl font-semibold mb-12 accent-blue">Featured Work</h2>
+    <p class="md:hidden -mt-8 mb-5 text-sm text-slate-400">Swipe left to see more projects -&gt;</p>
     <div class="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory md:grid md:grid-cols-3 md:gap-8 md:overflow-visible md:pb-0">
       <div
         class="group min-w-[86vw] snap-start md:min-w-0 md:col-span-2 flex h-full flex-col bg-slate-900/70 border border-blue-900/30 hover:border-blue-500 rounded-3xl overflow-hidden shadow-xl shadow-blue-950/20 transition-all">

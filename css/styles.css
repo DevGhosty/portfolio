@@ -273,3 +273,23 @@ textarea:focus-visible {
 #projects .overflow-x-auto {
     scrollbar-color: var(--accent) transparent;
 }
+
+.mobile-menu-panel {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    padding-bottom: 0;
+    padding-top: 0;
+    pointer-events: none;
+    transform: translateY(-0.5rem);
+    transition: max-height 220ms ease, opacity 180ms ease, padding 220ms ease, transform 220ms ease;
+}
+
+.mobile-menu-panel.is-open {
+    max-height: 14rem;
+    opacity: 1;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+    pointer-events: auto;
+    transform: translateY(0);
+}
