@@ -366,10 +366,15 @@ h2.accent-blue {
     letter-spacing: -0.045em;
 }
 
+/* Nav logo letters: always inline-block so kerning/spacing matches intro + post-intro
+   (was only under html.brand-intro-active, which caused a snap when that class was removed). */
+#nav-brand .nav-brand-char {
+    display: inline-block;
+}
+
 /* Brand intro: rain-to-nav (class set in brand-intro-boot.js) */
 /* Nav: per-letter hidden until outro, then L→R “placement” under flying cluster */
 html.brand-intro-active #nav-brand .nav-brand-char {
-    display: inline-block;
     opacity: 0;
     transform: translate3d(-0.24em, 0.07em, 0);
 }
