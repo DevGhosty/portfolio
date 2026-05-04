@@ -107,7 +107,7 @@
       </div>
 
       <div class="relative flex justify-center hero-plate-wrap">
-        <div id="hero-plate"
+        <div id="hero-plate" data-plate-section="hero"
           class="w-72 h-72 rounded-3xl bg-gradient-to-br from-blue-900/30 to-slate-900/50 border border-blue-500/30 flex items-center justify-center backdrop-blur-sm will-change-transform">
           <div class="text-4xl md:text-5xl font-semibold accent-blue font-display text-center px-6" aria-hidden="true">Build.
             Ship.</div>
@@ -119,11 +119,33 @@
   <section id="about" class="reveal-section max-w-6xl mx-auto px-6 py-16 md:py-24 bg-transparent backdrop-blur-sm rounded-3xl">
     <h2 class="reveal-item text-4xl font-semibold mb-8 accent-blue">About Me</h2>
     <div class="grid md:grid-cols-2 gap-12">
-      <div class="reveal-item text-slate-300 leading-relaxed space-y-6">
-        <p>I am a junior undergraduate Computer Science and Software Engineering major at the University of Washington,
-          focused on AI-assisted systems, backend software engineering, and human-centered tools.</p>
-        <p>I enjoy building practical web experiences and developer workflows, with game development and interactive
-          interfaces continuing to shape how I think about performance, usability, and design.</p>
+      <div class="text-slate-300 leading-relaxed space-y-10">
+        <div class="reveal-item">
+          <p>I am a junior undergraduate Computer Science and Software Engineering major at the University of Washington,
+            focused on AI-assisted systems, backend software engineering, and human-centered tools.</p>
+          <p class="mt-6">I enjoy building practical web experiences and developer workflows, with game development and interactive
+            interfaces continuing to shape how I think about performance, usability, and design.</p>
+        </div>
+        <div class="reveal-item border border-blue-900/25 rounded-2xl bg-slate-950/40 px-5 py-6 backdrop-blur-sm">
+          <h3 class="font-mono text-xs uppercase tracking-widest text-blue-400/90 mb-5">Lab log</h3>
+          <ol class="about-timeline space-y-6 border-l border-blue-500/30 pl-5 ml-1 list-none">
+            <li class="reveal-item relative">
+              <span class="about-timeline-dot" aria-hidden="true"></span>
+              <p class="font-mono text-[11px] uppercase tracking-wide text-blue-400/75">Problem</p>
+              <p class="mt-1 text-slate-300">Mental health tools need interfaces that feel safe and responsive—without hiding the complexity of real NLP systems.</p>
+            </li>
+            <li class="reveal-item relative">
+              <span class="about-timeline-dot" aria-hidden="true"></span>
+              <p class="font-mono text-[11px] uppercase tracking-wide text-blue-400/75">Stack</p>
+              <p class="mt-1 text-slate-300">LLM workflows, structured prompts, backend services, and static-to‑dynamic front ends (C++, Python, TypeScript, web).</p>
+            </li>
+            <li class="reveal-item relative">
+              <span class="about-timeline-dot" aria-hidden="true"></span>
+              <p class="font-mono text-[11px] uppercase tracking-wide text-blue-400/75">Outcome</p>
+              <p class="mt-1 text-slate-300">Shipping humane demos, faster iteration on AI features, and clearer boundaries between human judgment and model output.</p>
+            </li>
+          </ol>
+        </div>
       </div>
       <div class="reveal-item bg-slate-900/30 border border-blue-900/30 backdrop-blur-sm rounded-3xl p-8">
         <h3 class="text-blue-400 mb-6">Currently exploring</h3>
@@ -189,6 +211,19 @@
         <div class="flex flex-1 flex-col p-5 md:p-7">
           <h3 class="font-semibold text-xl md:text-2xl">iCare - Intelligent Healthcare for Mental and Behavior Health</h3>
           <p class="text-slate-400 mt-3 leading-relaxed">The iCare project aims to provide support for people with mental health issues through two chatbots: the Carebot and Coachbot.</p>
+          <details class="project-inspect mt-5 border-t border-white/10 pt-4 text-left">
+            <summary class="project-inspect-summary">inspect_spec.json</summary>
+            <div class="project-spec-panel mt-3 space-y-3 text-sm">
+              <p class="project-spec-thesis text-slate-300">Dual chatbot UX for behavioral health: triage-style support plus coaching-style guidance, wired to careful prompt boundaries.</p>
+              <p class="font-mono text-[11px] uppercase tracking-wide text-blue-400/80">signals</p>
+              <ul class="project-spec-tags flex flex-wrap gap-2 font-mono text-xs" aria-label="Technologies">
+                <li>Python</li>
+                <li>NLP</li>
+                <li>UX</li>
+                <li>research</li>
+              </ul>
+            </div>
+          </details>
           <a href="https://depts.washington.edu/uwbur/listing/cocobot-natural-language-processing-nlp-for-behavioral-and-mental-health/"
             class="text-blue-400 hover:text-blue-300 mt-6 inline-flex items-center gap-2 font-semibold transition-colors">Project Link -&gt;</a>
         </div>
@@ -201,6 +236,19 @@
         <div class="flex flex-1 flex-col p-5 md:p-6">
           <h3 class="font-semibold text-xl">Google - Associate Software Developer Intern</h3>
           <p class="text-slate-400 mt-2">Worked on LLM prompt quality, task alignment, model behavior guidance, and structured content workflows across classification, summarization, and code transformation use cases.</p>
+          <details class="project-inspect mt-5 border-t border-white/10 pt-4 text-left">
+            <summary class="project-inspect-summary">inspect_spec.json</summary>
+            <div class="project-spec-panel mt-3 space-y-3 text-sm">
+              <p class="project-spec-thesis text-slate-300">Production-scale evaluation loops: align model outputs with product intent via rubrics, constraints, and iterative prompt design.</p>
+              <p class="font-mono text-[11px] uppercase tracking-wide text-blue-400/80">signals</p>
+              <ul class="project-spec-tags flex flex-wrap gap-2 font-mono text-xs" aria-label="Technologies">
+                <li>LLMs</li>
+                <li>prompting</li>
+                <li>eval</li>
+                <li>structured I/O</li>
+              </ul>
+            </div>
+          </details>
           <a href="/resume"
             class="text-blue-400 hover:text-blue-300 mt-6 inline-flex items-center gap-2 font-semibold transition-colors">View Resume -&gt;</a>
         </div>
@@ -212,6 +260,16 @@
         <div class="flex flex-1 flex-col p-5 md:p-6">
           <h3 class="font-semibold text-xl">More Work Coming Soon</h3>
           <p class="text-slate-400 mt-2">Additional software and AI projects will be added here.</p>
+          <details class="project-inspect mt-5 border-t border-white/10 pt-4 text-left">
+            <summary class="project-inspect-summary">inspect_spec.json</summary>
+            <div class="project-spec-panel mt-3 space-y-3 text-sm">
+              <p class="project-spec-thesis text-slate-300">Placeholder slot for the next shipped build—spec will list objective, stack, and links once live.</p>
+              <p class="font-mono text-[11px] uppercase tracking-wide text-blue-400/80">signals</p>
+              <ul class="project-spec-tags flex flex-wrap gap-2 font-mono text-xs" aria-label="Technologies">
+                <li>TBD</li>
+              </ul>
+            </div>
+          </details>
         </div>
       </div>
     </div>
@@ -238,7 +296,7 @@
         <textarea name="message" rows="5" placeholder="Message"
           class="w-full bg-black border border-slate-700 focus:border-blue-500 rounded-3xl px-6 py-5 outline-none"
           required></textarea>
-        <p id="form-status" class="hidden rounded-3xl border px-5 py-4 text-sm" role="status" aria-live="polite"></p>
+        <p id="form-status" class="hidden form-status-line mt-2 text-left rounded border px-4 py-3 text-sm font-mono leading-relaxed" role="status" aria-live="polite"></p>
         <button id="form-submit" type="submit"
           class="w-full bg-blue-600 hover:bg-blue-500 py-5 rounded-3xl font-semibold transition">Send Message</button>
       </form>

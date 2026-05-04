@@ -7,6 +7,17 @@ let width = 0;
 let height = 0;
 let animationFrameId = null;
 
+/** Section-scoped motion/connection intensity (from ui.js scroll spy) */
+let particleMood = { speedMul: 1, lineMul: 1 };
+
+window.setParticleMood = function setParticleMood(opts) {
+    if (!opts || typeof opts !== 'object') return;
+    particleMood = {
+        speedMul: typeof opts.speedMul === 'number' ? opts.speedMul : 1,
+        lineMul: typeof opts.lineMul === 'number' ? opts.lineMul : 1
+    };
+};
+
 /** Short-lived bright sparks: respawn on new particles when ttl hits 0 */
 let sparkStates = [];
 
@@ -106,8 +117,9 @@ class Particle {
     }
 
     update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
+        const m = particleMood.speedMul;
+        this.x += this.speedX * m;
+        this.y += this.speedY * m;
         if (this.x < 0 || this.x > width) this.speedX *= -1;
         if (this.y < 0 || this.y > height) this.speedY *= -1;
     }
@@ -158,8 +170,9 @@ function drawConnections(sky) {
     const time = performance.now() * 0.0015;
     const maxDistSq = 120 * 120;
     const scrollBlend = getScrollBlend();
-    const lineBoost = 0.4 + 0.75 * scrollBlend;
-    const pulseBoost = 0.65 + 0.68 * scrollBlend;
+    const lm = particleMood.lineMul;
+    const lineBoost = (0.4 + 0.75 * scrollBlend) * lm;
+    const pulseBoost = (0.65 + 0.68 * scrollBlend) * lm;
     const motionOk = !prefersReducedMotion();
 
     const baseA = darkTheme ? 0.08 : 0.11;

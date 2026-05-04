@@ -9,11 +9,13 @@ function init() {
     initNavScrollState();
     initNavActiveSections();
     initHeroPlateParallax();
+    initHeroPlateSectionSignal();
     initScrollGlow();
     initProgressBar();
     initSectionLinks();
     initContactForm();
     initProjectCarousel();
+    initParticleSectionMood();
     initMobileMenu();
 }
 

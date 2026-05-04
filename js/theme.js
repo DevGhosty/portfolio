@@ -7,6 +7,13 @@ function applyDocumentTheme(theme) {
     root.classList.remove('light');
     root.style.colorScheme = next === 'dark' ? 'dark' : 'light';
     localStorage.setItem('theme', next);
+
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        root.classList.remove('theme-transitioning');
+        void root.offsetWidth;
+        root.classList.add('theme-transitioning');
+        window.setTimeout(() => root.classList.remove('theme-transitioning'), 230);
+    }
 }
 
 function initTheme() {

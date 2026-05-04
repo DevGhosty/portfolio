@@ -90,14 +90,20 @@ function initBrandIntro() {
         const clusterChars = clusterEl.querySelectorAll('.brand-intro-char');
         const navChars = navBrand.querySelectorAll('.nav-brand-char');
 
+        /* Mobile: one transform on the cluster avoids ~12 simultaneous composited
+         * glyph animations colliding with backdrop-filter — major source of hitching. */
+        const preferSimpleExit = window.matchMedia('(max-width: 768px)').matches;
+
         const applyPerCharRainHome =
-            clusterChars.length === navChars.length && clusterChars.length > 0;
+            !preferSimpleExit &&
+            clusterChars.length === navChars.length &&
+            clusterChars.length > 0;
 
         if (!applyPerCharRainHome) {
             clusterEl.style.transformOrigin = 'center center';
             clusterEl.style.willChange = 'transform, opacity';
             clusterEl.style.transition =
-                'transform 1.25s cubic-bezier(0.25, 0.88, 0.32, 1), opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.62s';
+                'transform 1.05s cubic-bezier(0.25, 0.88, 0.32, 1), opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.48s';
             const cr = clusterEl.getBoundingClientRect();
             const nr = navBrand.getBoundingClientRect();
             const cx = cr.left + cr.width / 2;
@@ -299,9 +305,10 @@ function initNavActiveSections() {
 // ==================== HERO PLATE PARALLAX ====================
 function initHeroPlateParallax() {
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const finePointer = window.matchMedia('(pointer: fine)').matches;
     const hero = document.getElementById('hero');
     const plate = document.getElementById('hero-plate');
-    if (reduced || !hero || !plate) return;
+    if (reduced || !hero || !plate || !finePointer) return;
 
     let rafId = 0;
     let targetX = 0;
@@ -327,6 +334,93 @@ function initHeroPlateParallax() {
         targetX = 0;
         targetY = 0;
         if (!rafId) rafId = requestAnimationFrame(apply);
+    });
+}
+
+function initHeroPlateSectionSignal() {
+    const plate = document.getElementById('hero-plate');
+    const sectionIds = ['hero', 'about', 'skills', 'projects', 'contact'];
+    const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
+    if (!plate || !sections.length) return;
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        plate.dataset.plateSection = 'hero';
+        return;
+    }
+
+    const nav = document.getElementById('site-nav');
+    const markerLine = () => (nav ? nav.getBoundingClientRect().bottom : 72) + 12;
+
+    const apply = () => {
+        let current = 'hero';
+        if (window.scrollY >= 24) {
+            const line = markerLine();
+            for (const s of sections) {
+                if (s.getBoundingClientRect().top <= line) current = s.id;
+            }
+        }
+        plate.dataset.plateSection = current;
+    };
+
+    apply();
+    let raf = 0;
+    const onScrollOrResize = () => {
+        cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(apply);
+    };
+    window.addEventListener('scroll', onScrollOrResize, { passive: true });
+    window.addEventListener('resize', onScrollOrResize);
+
+    const thresholds = [0, 0.08, 0.16, 0.28, 0.42, 0.56, 0.7, 0.85, 1];
+    const io = new IntersectionObserver(onScrollOrResize, { threshold: thresholds });
+    sections.forEach(section => io.observe(section));
+}
+
+function initParticleSectionMood() {
+    if (typeof window.setParticleMood !== 'function') return;
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        window.setParticleMood({ speedMul: 0.55, lineMul: 0.72 });
+        return;
+    }
+
+    const sectionIds = ['hero', 'about', 'skills', 'projects', 'contact'];
+    const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
+    if (!sections.length) return;
+
+    const nav = document.getElementById('site-nav');
+    const markerLine = () => (nav ? nav.getBoundingClientRect().bottom : 72) + 12;
+
+    const moods = {
+        hero: { speedMul: 1, lineMul: 1 },
+        about: { speedMul: 1.02, lineMul: 1.05 },
+        skills: { speedMul: 1.06, lineMul: 1.1 },
+        projects: { speedMul: 1.12, lineMul: 1.22 },
+        contact: { speedMul: 0.94, lineMul: 0.95 }
+    };
+
+    let raf = 0;
+    const apply = () => {
+        let current = 'hero';
+        if (window.scrollY >= 24) {
+            const line = markerLine();
+            for (const s of sections) {
+                if (s.getBoundingClientRect().top <= line) current = s.id;
+            }
+        }
+        window.setParticleMood(moods[current] || moods.hero);
+    };
+
+    apply();
+    const onScrollOrResize = () => {
+        cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(apply);
+    };
+    window.addEventListener('scroll', onScrollOrResize, { passive: true });
+    window.addEventListener('resize', onScrollOrResize);
+
+    document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'visible') apply();
     });
 }
 
@@ -386,9 +480,22 @@ function initContactForm() {
 
     if (!form || !status || !submitButton) return;
 
-    const showStatus = (message, stateClasses) => {
+    const showStatus = (message, variant) => {
         status.textContent = message;
-        status.className = `rounded-3xl border px-5 py-4 text-sm ${stateClasses}`;
+        status.className =
+            'form-status-line mt-2 text-left rounded border px-4 py-3 text-sm font-mono leading-relaxed';
+
+        status.classList.remove(
+            'form-status-line--pending', 'form-status-line--ok', 'form-status-line--err');
+
+        if (variant === 'pending') {
+            status.classList.add('form-status-line--pending');
+        } else if (variant === 'ok') {
+            status.classList.add('form-status-line--ok');
+        } else if (variant === 'err') {
+            status.classList.add('form-status-line--err');
+        }
+        status.classList.remove('hidden');
     };
 
     form.addEventListener('submit', async (event) => {
@@ -396,7 +503,7 @@ function initContactForm() {
 
         submitButton.disabled = true;
         submitButton.textContent = 'Sending...';
-        showStatus('Sending your message...', 'border-blue-500/40 text-blue-300');
+        showStatus('> transmit: queued…', 'pending');
 
         const formData = new FormData(form);
 
@@ -408,13 +515,16 @@ function initContactForm() {
             });
 
             if (!response.ok) {
-                throw new Error('Form submission failed.');
+                throw new Error('Form submission failed');
             }
 
             form.reset();
-            showStatus('Message sent. Thanks for reaching out.', 'border-emerald-500/40 text-emerald-300');
+            showStatus('> status: OK — message delivered. Thanks for reaching out.', 'ok');
         } catch (error) {
-            showStatus('Message failed to send. Please try again in a moment.', 'border-red-500/40 text-red-300');
+            showStatus(
+                '> status: ERR — send failed. Retry shortly or email manually.',
+                'err'
+            );
         } finally {
             submitButton.disabled = false;
             submitButton.textContent = 'Send Message';
@@ -456,6 +566,7 @@ function initProjectCarousel() {
     let startScrollLeft = 0;
 
     carousel.addEventListener('pointerdown', (event) => {
+        if (event.target.closest('summary, a, button, input, textarea, select')) return;
         if (event.pointerType === 'touch') return;
         if (event.pointerType === 'mouse' && event.button !== 0) return;
         isDragging = true;
@@ -537,6 +648,8 @@ window.initRevealSections = initRevealSections;
 window.initNavScrollState = initNavScrollState;
 window.initNavActiveSections = initNavActiveSections;
 window.initHeroPlateParallax = initHeroPlateParallax;
+window.initHeroPlateSectionSignal = initHeroPlateSectionSignal;
+window.initParticleSectionMood = initParticleSectionMood;
 window.initScrollGlow = initScrollGlow;
 window.initProgressBar = initProgressBar;
 window.initSectionLinks = initSectionLinks;
