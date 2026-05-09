@@ -1,4 +1,8 @@
 // ==================== PARTICLE BACKGROUND SYSTEM ====================
+/** Cap keeps O(n²) connection drawing bounded on large monitors. */
+const MIN_PARTICLES = 28;
+const MAX_PARTICLES = 115;
+
 const canvas = document.getElementById('bg-canvas');
 const ctx = canvas ? canvas.getContext('2d', { alpha: true }) : null;
 
@@ -160,12 +164,14 @@ function resizeCanvas() {
 function initParticles() {
     if (!canvas || !ctx) return;
     particles = [];
-    const count = Math.floor((width * height) / 8000);
+    const raw = Math.floor((width * height) / 8000);
+    const count = Math.min(MAX_PARTICLES, Math.max(MIN_PARTICLES, raw));
     for (let i = 0; i < count; i++) particles.push(new Particle());
     initSparkStates(count);
 }
 
 function drawConnections(sky) {
+    if (prefersReducedMotion()) return;
     const darkTheme = isDarkTheme();
     const time = performance.now() * 0.0015;
     const maxDistSq = 120 * 120;
@@ -173,7 +179,6 @@ function drawConnections(sky) {
     const lm = particleMood.lineMul;
     const lineBoost = (0.4 + 0.75 * scrollBlend) * lm;
     const pulseBoost = (0.65 + 0.68 * scrollBlend) * lm;
-    const motionOk = !prefersReducedMotion();
 
     const baseA = darkTheme ? 0.08 : 0.11;
     const lineA = baseA * (0.72 + 0.55 * (sky.b / 255));
@@ -186,7 +191,7 @@ function drawConnections(sky) {
             const dy = particleA.y - particleB.y;
             const distSq = dx * dx + dy * dy;
             if (distSq < maxDistSq) {
-                const showPulse = motionOk && (i + j) % 3 === 0;
+                const showPulse = (i + j) % 3 === 0;
 
                 ctx.strokeStyle = darkTheme
                     ? `rgba(${sky.r}, ${sky.g}, ${sky.b}, ${lineA * lineBoost})`
@@ -225,6 +230,7 @@ function drawConnections(sky) {
 
 function animate() {
     if (!canvas || !ctx) return;
+
     const sky = skylineBlueRgb();
 
     ctx.fillStyle = isDarkTheme() ? 'rgba(0, 0, 0, 0.08)' : 'rgba(255, 255, 255, 0.2)';
@@ -244,12 +250,32 @@ function animate() {
     animationFrameId = requestAnimationFrame(animate);
 }
 
+function pauseBackgroundLoop() {
+    if (animationFrameId !== null) {
+        cancelAnimationFrame(animationFrameId);
+        animationFrameId = null;
+    }
+}
+
+function resumeBackgroundLoop() {
+    if (!canvas || !ctx) return;
+    if (animationFrameId !== null) return;
+    if (typeof document !== 'undefined' && document.visibilityState === 'hidden') return;
+    animate();
+}
+
+document.addEventListener('visibilitychange', () => {
+    if (!canvas || !ctx) return;
+    if (document.visibilityState === 'hidden') pauseBackgroundLoop();
+    else resumeBackgroundLoop();
+});
+
 function startBackground() {
     if (!canvas || !ctx) return;
-    if (animationFrameId) cancelAnimationFrame(animationFrameId);
+    pauseBackgroundLoop();
     resizeCanvas();
     initParticles();
-    animate();
+    resumeBackgroundLoop();
 }
 
 window.startBackground = startBackground;

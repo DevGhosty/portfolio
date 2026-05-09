@@ -8,12 +8,23 @@ function applyDocumentTheme(theme) {
     root.style.colorScheme = next === 'dark' ? 'dark' : 'light';
     localStorage.setItem('theme', next);
 
+    syncThemeSwitch();
+
     if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         root.classList.remove('theme-transitioning');
         void root.offsetWidth;
         root.classList.add('theme-transitioning');
         window.setTimeout(() => root.classList.remove('theme-transitioning'), 230);
     }
+}
+
+function syncThemeSwitch() {
+    const toggle = document.getElementById('theme-toggle');
+    if (!toggle) return;
+    toggle.setAttribute('role', 'switch');
+    const isDark = document.documentElement.dataset.theme === 'dark';
+    toggle.setAttribute('aria-checked', isDark ? 'true' : 'false');
+    toggle.setAttribute('aria-label', isDark ? 'Dark theme on. Switch to light theme' : 'Light theme on. Switch to dark theme');
 }
 
 function initTheme() {
@@ -28,7 +39,6 @@ function initTheme() {
     };
 
     applyDocumentTheme(getPreferred());
-
     toggle.addEventListener('click', () => {
         const isDark = document.documentElement.dataset.theme === 'dark';
         applyDocumentTheme(isDark ? 'light' : 'dark');

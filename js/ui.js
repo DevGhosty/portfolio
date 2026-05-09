@@ -13,7 +13,7 @@ function ensureNavBrandChars(anchor) {
     chars.forEach((ch, i) => {
         const span = document.createElement('span');
         span.className = 'nav-brand-char';
-        if (ch === '.') span.classList.add('text-blue-400');
+        if (ch === '.') span.classList.add('nav-brand-dot');
         span.textContent = ch === ' ' ? '\u00A0' : ch;
         span.style.setProperty('--nb-i', String(i));
         anchor.appendChild(span);
@@ -56,7 +56,7 @@ function initBrandIntro() {
     Array.from(line).forEach((ch, i) => {
         const span = document.createElement('span');
         span.className = 'brand-intro-char';
-        if (ch === '.') span.classList.add('text-blue-400');
+        if (ch === '.') span.classList.add('nav-brand-dot');
         span.textContent = ch === ' ' ? '\u00A0' : ch;
         span.style.setProperty('--bi-i', String(i));
         span.style.setProperty('--bi-x', i % 2 === 0 ? '-18vw' : '18vw');
@@ -208,7 +208,7 @@ function initRevealSections() {
     const sections = document.querySelectorAll('.reveal-section');
     sections.forEach(section => {
         section.querySelectorAll('.reveal-item').forEach((el, i) => {
-            el.style.setProperty('--reveal-stagger', `${Math.min(i, 16) * 50}ms`);
+            el.style.setProperty('--reveal-stagger', `${Math.min(i, 16) * 40}ms`);
         });
     });
 
@@ -634,6 +634,14 @@ function toggleMobileMenu() {
             link.removeAttribute('tabindex');
         }
     });
+
+    if (!isOpen) {
+        window.requestAnimationFrame(() => {
+            menu.querySelector('a')?.focus();
+        });
+    } else {
+        button.focus();
+    }
 }
 
 function initMobileMenu() {
@@ -641,6 +649,17 @@ function initMobileMenu() {
     if (!button) return;
 
     button.addEventListener('click', toggleMobileMenu);
+
+    if (document.body.dataset.menuEscapeBound === '1') return;
+    document.body.dataset.menuEscapeBound = '1';
+    document.addEventListener('keydown', (event) => {
+        if (event.key !== 'Escape') return;
+        const menu = document.getElementById('mobile-menu');
+        if (!menu || !menu.classList.contains('is-open')) return;
+        event.preventDefault();
+        closeMobileMenu();
+        document.getElementById('mobile-menu-button')?.focus();
+    });
 }
 
 window.initBrandIntro = initBrandIntro;

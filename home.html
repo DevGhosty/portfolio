@@ -21,32 +21,31 @@
   <script src="js/brand-intro-boot.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="js/tailwind-config.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body class="min-h-screen">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
   <canvas id="bg-canvas" aria-hidden="true"></canvas>
   <div class="grain-overlay" aria-hidden="true"></div>
 
   <div class="page-content">
-  <nav id="site-nav" class="site-nav fixed top-0 w-full bg-black/80 backdrop-blur-md z-50 border-b border-white/10 transition-shadow duration-300"
+  <nav id="site-nav" class="site-nav fixed top-0 w-full z-50 border-b border-white/10 bg-black/90 backdrop-blur-sm md:bg-black/80 md:backdrop-blur-md transition-[background,backdrop-filter,box-shadow] duration-300"
     aria-label="Main navigation">
-    <div class="nav-shell max-w-6xl mx-auto px-6 py-5 flex justify-between items-center transition-[padding] duration-300 ease-out">
-      <a href="/home" id="nav-brand" class="text-3xl font-bold tracking-tighter accent-blue font-display transition-opacity duration-300">Hello There<span
-          class="text-blue-400">.</span></a>
+    <div class="nav-shell max-w-6xl mx-auto px-4 sm:px-6 py-4 sm:py-5 flex justify-between items-center gap-2 transition-[padding] duration-300 ease-out">
+      <a href="/home" id="nav-brand" class="font-display transition-opacity duration-300">Hello There<span class="nav-brand-dot">.</span></a>
 
       <div class="hidden md:flex gap-8 text-sm font-medium">
-        <a href="#about" class="nav-section-link hover:text-blue-400 transition-colors">About</a>
-        <a href="#projects" class="nav-section-link hover:text-blue-400 transition-colors">Projects</a>
-        <a href="#skills" class="nav-section-link hover:text-blue-400 transition-colors">Skills</a>
-        <a href="#contact" class="nav-section-link hover:text-blue-400 transition-colors">Contact</a>
+        <a href="#about" class="nav-section-link hover:text-blue-400">About</a>
+        <a href="#skills" class="nav-section-link hover:text-blue-400">Skills</a>
+        <a href="#projects" class="nav-section-link hover:text-blue-400">Projects</a>
+        <a href="#contact" class="nav-section-link hover:text-blue-400">Contact</a>
       </div>
 
-      <div class="flex items-center gap-4">
+      <div class="flex items-center shrink-0 gap-2 sm:gap-4">
         <button id="theme-toggle"
-          class="relative w-14 h-8 rounded-full p-1 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          aria-label="Toggle dark/light mode">
+          class="relative w-14 h-8 rounded-full p-1 transition-all duration-300 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
+          type="button">
           <div id="toggle-track"
             class="absolute inset-0 rounded-full transition-all duration-300 flex items-center px-1">
             <span id="sun-icon" class="text-yellow-300 text-lg transition-opacity">&#9728;&#65039;</span>
@@ -56,255 +55,324 @@
           </div>
         </button>
 
-        <button id="mobile-menu-button" class="md:hidden text-2xl"
+        <button id="mobile-menu-button" type="button" class="md:hidden inline-flex items-center justify-center p-2 -mr-2 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
           aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobile-menu">
-          <i class="fa-solid fa-bars"></i>
+          <svg class="icon-svg w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <path d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
         </button>
       </div>
     </div>
-    <div id="mobile-menu" class="mobile-menu-panel md:hidden border-t border-white/10 bg-black/90 px-6" aria-hidden="true">
+    <div id="mobile-menu" class="mobile-menu-panel md:hidden border-t border-white/10 bg-black/90 px-4 sm:px-6" aria-hidden="true">
       <div class="max-w-6xl mx-auto flex flex-col gap-3 text-sm font-medium">
-        <a href="#about" class="nav-section-link hover:text-blue-400 transition-colors" tabindex="-1">About</a>
-        <a href="#skills" class="nav-section-link hover:text-blue-400 transition-colors" tabindex="-1">Skills</a>
-        <a href="#projects" class="nav-section-link hover:text-blue-400 transition-colors" tabindex="-1">Projects</a>
-        <a href="#contact" class="nav-section-link hover:text-blue-400 transition-colors" tabindex="-1">Contact</a>
+        <a href="#about" class="nav-section-link hover:text-blue-400" tabindex="-1">About</a>
+        <a href="#skills" class="nav-section-link hover:text-blue-400" tabindex="-1">Skills</a>
+        <a href="#projects" class="nav-section-link hover:text-blue-400" tabindex="-1">Projects</a>
+        <a href="#contact" class="nav-section-link hover:text-blue-400" tabindex="-1">Contact</a>
       </div>
     </div>
   </nav>
 
-  <header id="hero" class="hero-stage hero-bg min-h-screen flex items-center pt-20 relative">
-    <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center z-10">
-      <div>
-        <h1 class="font-display text-5xl sm:text-6xl md:text-7xl font-bold tracking-tighter leading-none accent-blue hero-name">
-          Steven Rosas
-        </h1>
-        <p class="hero-lede hero-gradient-text text-2xl md:text-3xl mt-4 font-medium">Software Engineer focused on AI systems, developer tools,
-          and immersive web experiences</p>
-        <p class="mt-6 text-slate-400 max-w-md">Washington based. Building human-centered software with LLM workflows,
-          backend systems, and thoughtful interfaces.</p>
+  <main id="main-content" tabindex="-1">
+  <header id="hero" class="hero-stage hero-bg min-h-screen flex items-center pt-[4.75rem] sm:pt-20 pb-12 sm:pb-14 md:pb-10 relative">
+    <div class="hero-inner max-w-6xl mx-auto px-4 sm:px-6 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-14 lg:gap-16 md:items-center items-start z-10 w-full min-w-0">
+      <div class="hero-copy flex flex-col gap-5 sm:gap-6 min-w-0">
+        <p class="hero-eyebrow">Software engineer · University of Washington · Seattle area</p>
+        <div class="hero-headline-stack space-y-2 sm:space-y-3">
+          <h1 class="hero-name-display font-display font-bold tracking-tighter leading-none accent-blue hero-name">
+            Steven Rosas
+          </h1>
+          <p class="hero-role-line font-display text-base sm:text-lg md:text-xl font-semibold tracking-tight text-slate-300 max-w-xl">
+            AI systems, developer tooling, and production-minded interfaces.
+          </p>
+        </div>
+        <p class="hero-lede hero-gradient-text text-lg sm:text-xl md:text-2xl font-normal leading-snug tracking-tight">I ship LLM workflows, backends,
+          and clear UX—with an eye toward what actually launches.</p>
+        <p class="hero-value text-sm sm:text-base text-slate-400 leading-relaxed max-w-lg border-l-2 border-blue-500/40 pl-4">
+          Featured work and the full story are below—or jump straight to projects.
+        </p>
 
-        <div class="mt-10 flex flex-col sm:flex-row gap-4">
-          <a href="#projects"
-            class="bg-blue-500 hover:bg-blue-600 px-8 py-4 rounded-3xl font-semibold text-center transition-all active:scale-95">View
-            Projects</a>
-          <a href="#contact"
-            class="border border-slate-500 hover:border-blue-400 px-8 py-4 rounded-3xl font-semibold text-center transition-all">Let's
-            Talk</a>
-          <a href="/resume"
-            class="border border-slate-500 hover:border-blue-400 px-8 py-4 rounded-3xl font-semibold text-center transition-all">Resume</a>
+        <div class="hero-cta flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-center sm:justify-start pt-2">
+          <a href="#projects" class="btn btn-primary hero-cta-primary w-full sm:w-auto shrink-0 justify-center min-w-0 sm:min-w-[11rem] text-center">
+            View projects
+          </a>
+          <div class="hero-cta-secondary-row flex flex-row flex-wrap w-full sm:w-auto justify-between sm:justify-start gap-2 sm:gap-3 flex-1 min-w-0">
+            <a href="#contact" class="btn btn-outline hero-cta-secondary flex-1 min-w-[9rem] sm:flex-initial sm:min-w-[10.5rem] justify-center text-center">Let&apos;s talk</a>
+            <a href="/resume" class="btn btn-outline hero-cta-secondary flex-1 min-w-[9rem] sm:flex-initial sm:min-w-[10.5rem] justify-center text-center">Resume</a>
+          </div>
         </div>
 
-        <div class="mt-16 flex gap-8 text-sm">
+        <a href="#about" class="hero-scroll-affordance inline-flex items-center gap-2 text-sm font-medium w-fit">
+          <span>About &amp; background</span>
+          <svg class="icon-svg h-4 w-4 shrink-0 hero-scroll-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 5v14M5 12l7 7 7-7"/>
+          </svg>
+        </a>
+
+        <div class="hero-meta flex flex-wrap gap-x-8 gap-y-3 text-sm pt-6 mt-4 border-t border-white/10">
           <a href="https://www.linkedin.com/in/srosasg/" target="_blank" rel="noopener noreferrer"
-            class="flex items-center gap-2 hover:text-blue-400">
-            <i class="fa-brands fa-linkedin"></i> LinkedIn
+            class="inline-flex items-center gap-2 text-slate-400 hover:text-blue-400">
+            <svg class="icon-svg w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+            LinkedIn<span class="sr-only"> (opens in new tab)</span>
           </a>
           <a href="https://github.com/DevGhosty" target="_blank" rel="noopener noreferrer"
-            class="flex items-center gap-2 hover:text-blue-400">
-            <i class="fa-brands fa-github"></i> GitHub
+            class="inline-flex items-center gap-2 text-slate-400 hover:text-blue-400">
+            <svg class="icon-svg w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+            </svg>
+            GitHub<span class="sr-only"> (opens in new tab)</span>
           </a>
         </div>
       </div>
 
-      <div class="relative flex justify-center hero-plate-wrap">
+      <div class="relative flex justify-center md:justify-end hero-plate-wrap w-full mx-auto md:mx-0 max-w-[min(100%,18rem)] sm:max-w-none">
         <div id="hero-plate" data-plate-section="hero"
-          class="w-72 h-72 rounded-3xl bg-gradient-to-br from-blue-900/30 to-slate-900/50 border border-blue-500/30 flex items-center justify-center backdrop-blur-sm will-change-transform">
-          <div class="text-4xl md:text-5xl font-semibold accent-blue font-display text-center px-6" aria-hidden="true">Build.
-            Ship.</div>
+          class="hero-promo-plate w-64 h-64 sm:w-72 sm:h-72 shrink-0 flex items-center justify-center will-change-transform"
+          aria-hidden="true">
+          <div class="text-4xl md:text-5xl font-semibold accent-blue font-display text-center px-6">Build.<br />Ship.</div>
         </div>
       </div>
     </div>
   </header>
 
-  <section id="about" class="reveal-section max-w-6xl mx-auto px-6 py-16 md:py-24 bg-transparent backdrop-blur-sm rounded-3xl">
-    <h2 class="reveal-item text-4xl font-semibold mb-8 accent-blue">About Me</h2>
-    <div class="grid md:grid-cols-2 gap-12">
-      <div class="text-slate-300 leading-relaxed space-y-10">
-        <div class="reveal-item">
+  <section id="about" class="reveal-section section-divider-top section-surface max-w-6xl mx-auto px-4 sm:px-6 py-16 md:py-24 rounded-3xl" aria-labelledby="about-heading">
+    <div class="reveal-item">
+      <p class="section-eyebrow">Background</p>
+      <h2 id="about-heading" class="text-3xl sm:text-4xl font-semibold mb-8 accent-blue">About Me</h2>
+    </div>
+    <div class="grid md:grid-cols-2 gap-10 md:gap-12">
+      <div class="text-slate-300 leading-relaxed space-y-7">
+        <div class="reveal-item space-y-3">
           <p>I am a junior undergraduate Computer Science and Software Engineering major at the University of Washington,
             focused on AI-assisted systems, backend software engineering, and human-centered tools.</p>
-          <p class="mt-6">I enjoy building practical web experiences and developer workflows, with game development and interactive
+          <p class="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500 mb-1">Focus</p>
+          <p>I enjoy building practical web experiences and developer workflows, with game development and interactive
             interfaces continuing to shape how I think about performance, usability, and design.</p>
         </div>
-        <div class="reveal-item border border-blue-900/25 rounded-2xl bg-slate-950/40 px-5 py-6 backdrop-blur-sm">
+        <div class="reveal-item about-lab-log-panel border border-blue-900/25 rounded-2xl bg-slate-950/40 px-5 py-6 backdrop-blur-sm md:backdrop-blur-md">
           <h3 class="font-mono text-xs uppercase tracking-widest text-blue-400/90 mb-5">Lab log</h3>
           <ol class="about-timeline space-y-6 border-l border-blue-500/30 pl-5 ml-1 list-none">
             <li class="reveal-item relative">
               <span class="about-timeline-dot" aria-hidden="true"></span>
-              <p class="font-mono text-[11px] uppercase tracking-wide text-blue-400/75">Problem</p>
+              <h4 class="font-mono text-[11px] uppercase tracking-wide text-blue-400/90">Problem</h4>
               <p class="mt-1 text-slate-300">Mental health tools need interfaces that feel safe and responsive—without hiding the complexity of real NLP systems.</p>
             </li>
             <li class="reveal-item relative">
               <span class="about-timeline-dot" aria-hidden="true"></span>
-              <p class="font-mono text-[11px] uppercase tracking-wide text-blue-400/75">Stack</p>
+              <h4 class="font-mono text-[11px] uppercase tracking-wide text-blue-400/90">Stack</h4>
               <p class="mt-1 text-slate-300">LLM workflows, structured prompts, backend services, and static-to‑dynamic front ends (C++, Python, TypeScript, web).</p>
             </li>
             <li class="reveal-item relative">
               <span class="about-timeline-dot" aria-hidden="true"></span>
-              <p class="font-mono text-[11px] uppercase tracking-wide text-blue-400/75">Outcome</p>
+              <h4 class="font-mono text-[11px] uppercase tracking-wide text-blue-400/90">Outcome</h4>
               <p class="mt-1 text-slate-300">Shipping humane demos, faster iteration on AI features, and clearer boundaries between human judgment and model output.</p>
             </li>
           </ol>
         </div>
       </div>
-      <div class="reveal-item bg-slate-900/30 border border-blue-900/30 backdrop-blur-sm rounded-3xl p-8">
+      <div class="reveal-item bg-slate-900/30 border border-blue-900/30 backdrop-blur-sm md:backdrop-blur-md rounded-3xl p-8">
         <h3 class="text-blue-400 mb-6">Currently exploring</h3>
-        <ul class="space-y-4">
-          <li class="flex gap-4"><span class="text-blue-400">-></span> Real-time web experiences</li>
-          <li class="flex gap-4"><span class="text-blue-400">-></span> Cloud-based applications</li>
-          <li class="flex gap-4"><span class="text-blue-400">-></span> Open-source tools</li>
+        <ul class="explore-list space-y-4 text-slate-300">
+          <li>Real-time web experiences</li>
+          <li>Cloud-based applications</li>
+          <li>Open-source tools</li>
         </ul>
       </div>
     </div>
   </section>
 
-  <section id="skills" class="reveal-section max-w-6xl mx-auto px-6 py-16 md:py-24 bg-transparent backdrop-blur-sm rounded-3xl">
-    <div class="max-w-6xl mx-auto">
-      <h2 class="reveal-item text-4xl font-semibold mb-12 accent-blue">Skills &amp; Toolbox</h2>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div class="reveal-item bg-slate-900 hover:bg-slate-800 border border-blue-900/50 p-6 rounded-3xl text-center transition">
-          C++</div>
-        <div class="reveal-item bg-slate-900 hover:bg-slate-800 border border-blue-900/50 p-6 rounded-3xl text-center transition">
-          C</div>
-        <div class="reveal-item bg-slate-900 hover:bg-slate-800 border border-blue-900/50 p-6 rounded-3xl text-center transition">
-          Java</div>
-        <div class="reveal-item bg-slate-900 hover:bg-slate-800 border border-blue-900/50 p-6 rounded-3xl text-center transition">
-          Machine Learning</div>
-        <div class="reveal-item bg-slate-900 hover:bg-slate-800 border border-blue-900/50 p-6 rounded-3xl text-center transition">
-          Git</div>
-        <div class="reveal-item bg-slate-900 hover:bg-slate-800 border border-blue-900/50 p-6 rounded-3xl text-center transition">
-          Luau</div>
-        <div class="reveal-item bg-slate-900 hover:bg-slate-800 border border-blue-900/50 p-6 rounded-3xl text-center transition">
-          Databases</div>
-        <div class="reveal-item bg-slate-900 hover:bg-slate-800 border border-blue-900/50 p-6 rounded-3xl text-center transition">
-          Cloud Apps
+  <section id="skills" class="reveal-section section-divider-top section-surface max-w-6xl mx-auto px-4 sm:px-6 py-16 md:py-24 rounded-3xl" aria-labelledby="skills-heading">
+    <div class="reveal-item">
+      <p class="section-eyebrow">Capabilities</p>
+      <h2 id="skills-heading" class="text-3xl sm:text-4xl font-semibold mb-10 accent-blue">Skills &amp; Toolbox</h2>
+    </div>
+
+    <div class="space-y-10 reveal-item">
+      <div>
+        <h3 class="skills-group-label">Languages</h3>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-3">
+          <div class="skill-cell">C++</div>
+          <div class="skill-cell">C</div>
+          <div class="skill-cell">Java</div>
+          <div class="skill-cell">Luau</div>
+        </div>
+      </div>
+      <div>
+        <h3 class="skills-group-label">Systems &amp; tools</h3>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-3">
+          <div class="skill-cell md:col-span-2">Machine Learning</div>
+          <div class="skill-cell">Git</div>
+          <div class="skill-cell">Databases</div>
+          <div class="skill-cell md:col-span-2">Cloud Apps</div>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="projects" class="reveal-section max-w-6xl mx-auto px-6 py-16 md:py-24 bg-transparent backdrop-blur-sm rounded-3xl">
-    <div class="flex items-center justify-between gap-4 mb-8">
-      <div>
-        <h2 class="reveal-item text-4xl font-semibold accent-blue">Featured Work</h2>
-        <p class="reveal-item mt-3 text-sm text-slate-400">Swipe or drag to see more projects -&gt;</p>
+  <section id="projects" class="reveal-section section-divider-top section-surface max-w-6xl mx-auto px-4 sm:px-6 py-16 md:py-24 rounded-3xl min-w-0" aria-labelledby="projects-heading">
+    <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between mb-8 min-w-0">
+      <div class="reveal-item">
+        <p class="section-eyebrow">Selected work</p>
+        <h2 id="projects-heading" class="text-3xl sm:text-4xl font-semibold accent-blue mb-0">Featured Work</h2>
+        <p class="mt-3 text-base md:text-sm text-slate-400 max-w-xl">Swipe or drag sideways to browse more projects (scroll hints fade at the edges).</p>
       </div>
-      <div class="reveal-item flex gap-3">
+      <div class="flex gap-3 shrink-0 sm:mt-1">
         <button type="button" data-project-prev
-          class="border border-slate-500 hover:border-blue-400 rounded-full w-11 h-11 transition-colors"
-          aria-label="Previous project">
-          <i class="fa-solid fa-arrow-left"></i>
+          class="carousel-nav-btn inline-flex items-center justify-center w-11 h-11 shrink-0"
+          aria-label="Previous project"
+          aria-controls="project-carousel">
+          <svg class="icon-svg w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M15 18l-6-6 6-6"/>
+          </svg>
         </button>
         <button type="button" data-project-next
-          class="border border-slate-500 hover:border-blue-400 rounded-full w-11 h-11 transition-colors"
-          aria-label="Next project">
-          <i class="fa-solid fa-arrow-right"></i>
+          class="carousel-nav-btn inline-flex items-center justify-center w-11 h-11 shrink-0"
+          aria-label="Next project"
+          aria-controls="project-carousel">
+          <svg class="icon-svg w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M9 18l6-6-6-6"/>
+          </svg>
         </button>
       </div>
     </div>
-    <div id="project-carousel" class="project-carousel flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory">
-      <div
-        class="reveal-item reveal-carousel project-card group min-w-[86vw] md:min-w-full snap-start flex h-full flex-col bg-slate-900/70 border border-blue-900/30 hover:border-blue-500 rounded-3xl overflow-hidden shadow-xl shadow-blue-950/20 transition-all">
-        <div class="project-card-media aspect-[1280/401] overflow-hidden bg-white">
-          <img src="icare-preview.svg" alt="iCare healthcare chatbot system diagram" class="block h-full w-full object-contain p-3 project-card-img">
+    <div id="project-carousel" class="project-carousel flex gap-4 md:gap-6 overflow-x-auto pb-4 snap-x snap-mandatory">
+      <article
+        class="reveal-item reveal-carousel project-card group snap-start flex h-full flex-col bg-slate-900/70 border border-blue-900/30 rounded-3xl overflow-hidden"
+        aria-labelledby="proj-card-icare-title">
+        <div class="project-card-media aspect-[1280/401] overflow-hidden bg-white shrink-0">
+          <img src="icare-preview.svg" alt="Diagram of the iCare dual chatbot system for behavioral health" class="block h-full w-full object-contain p-3 project-card-img">
         </div>
-        <div class="flex flex-1 flex-col p-5 md:p-7">
-          <h3 class="font-semibold text-xl md:text-2xl">iCare - Intelligent Healthcare for Mental and Behavior Health</h3>
-          <p class="text-slate-400 mt-3 leading-relaxed">The iCare project aims to provide support for people with mental health issues through two chatbots: the Carebot and Coachbot.</p>
-          <details class="project-inspect mt-5 border-t border-white/10 pt-4 text-left">
-            <summary class="project-inspect-summary">inspect_spec.json</summary>
-            <div class="project-spec-panel mt-3 space-y-3 text-sm">
-              <p class="project-spec-thesis text-slate-300">Dual chatbot UX for behavioral health: triage-style support plus coaching-style guidance, wired to careful prompt boundaries.</p>
-              <p class="font-mono text-[11px] uppercase tracking-wide text-blue-400/80">signals</p>
-              <ul class="project-spec-tags flex flex-wrap gap-2 font-mono text-xs" aria-label="Technologies">
-                <li>Python</li>
-                <li>NLP</li>
-                <li>UX</li>
-                <li>research</li>
-              </ul>
+        <div class="project-card-body">
+          <p class="project-card-eyebrow">UW · Research listing</p>
+          <h3 id="proj-card-icare-title" class="project-card-title font-display text-xl md:text-2xl font-semibold tracking-tight text-slate-50">iCare - Intelligent Healthcare for Mental and Behavior Health</h3>
+          <p class="project-card-desc text-slate-400 leading-relaxed">UW-listed research UX: dual chatbots (Carebot and Coachbot) help people navigate behavioral-health conversations with NLP-backed workflows and deliberate prompt boundaries—not hand-wavy demos.</p>
+          <div class="project-stack">
+            <span class="project-stack-label" id="proj-icare-signals-label">Signals</span>
+            <ul class="project-spec-tags flex flex-wrap gap-2" aria-labelledby="proj-icare-signals-label">
+              <li>Python</li>
+              <li>NLP</li>
+              <li>UX</li>
+              <li>research</li>
+            </ul>
+          </div>
+          <details class="project-inspect">
+            <summary class="project-inspect-summary"><span aria-hidden="true">inspect_spec.json · case notes</span><span class="sr-only">Show more case notes for iCare</span></summary>
+            <div class="project-spec-panel">
+              <p class="project-spec-thesis text-slate-300 leading-relaxed">Dual chatbot UX for behavioral health: triage-style support plus coaching-style guidance, wired to careful prompt boundaries.</p>
             </div>
           </details>
-          <a href="https://depts.washington.edu/uwbur/listing/cocobot-natural-language-processing-nlp-for-behavioral-and-mental-health/"
-            class="text-blue-400 hover:text-blue-300 mt-6 inline-flex items-center gap-2 font-semibold transition-colors">Project Link -&gt;</a>
+          <div class="project-card-footer">
+            <a href="https://depts.washington.edu/uwbur/listing/cocobot-natural-language-processing-nlp-for-behavioral-and-mental-health/"
+              target="_blank" rel="noopener noreferrer"
+              class="project-card-cta link-project link-project-external">Project listing<span class="sr-only"> (opens in new tab)</span>
+              <svg class="icon-svg link-project-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14L21 3"/>
+              </svg>
+            </a>
+          </div>
         </div>
-      </div>
-      <div
-        class="reveal-item reveal-carousel project-card group min-w-[86vw] md:min-w-full snap-start flex h-full flex-col bg-slate-900/70 border border-blue-900/30 hover:border-blue-500 rounded-3xl overflow-hidden transition-all">
-        <div class="project-card-media aspect-[16/9] overflow-hidden bg-white">
-          <img src="google-logo.svg" alt="Google logo" class="block h-full w-full object-contain project-card-img">
+      </article>
+      <article
+        class="reveal-item reveal-carousel project-card group snap-start flex h-full flex-col bg-slate-900/70 border border-blue-900/30 rounded-3xl overflow-hidden"
+        aria-labelledby="proj-card-google-title">
+        <div class="project-card-media aspect-[16/9] overflow-hidden bg-white shrink-0">
+          <img src="google-logo.svg" alt="Google multicolor logotype" class="block h-full w-full object-contain project-card-img">
         </div>
-        <div class="flex flex-1 flex-col p-5 md:p-6">
-          <h3 class="font-semibold text-xl">Google - Associate Software Developer Intern</h3>
-          <p class="text-slate-400 mt-2">Worked on LLM prompt quality, task alignment, model behavior guidance, and structured content workflows across classification, summarization, and code transformation use cases.</p>
-          <details class="project-inspect mt-5 border-t border-white/10 pt-4 text-left">
-            <summary class="project-inspect-summary">inspect_spec.json</summary>
-            <div class="project-spec-panel mt-3 space-y-3 text-sm">
-              <p class="project-spec-thesis text-slate-300">Production-scale evaluation loops: align model outputs with product intent via rubrics, constraints, and iterative prompt design.</p>
-              <p class="font-mono text-[11px] uppercase tracking-wide text-blue-400/80">signals</p>
-              <ul class="project-spec-tags flex flex-wrap gap-2 font-mono text-xs" aria-label="Technologies">
-                <li>LLMs</li>
-                <li>prompting</li>
-                <li>eval</li>
-                <li>structured I/O</li>
-              </ul>
+        <div class="project-card-body">
+          <p class="project-card-eyebrow">Internship</p>
+          <h3 id="proj-card-google-title" class="project-card-title font-display text-xl md:text-2xl font-semibold tracking-tight text-slate-50">Google - Associate Software Developer Intern</h3>
+          <p class="project-card-desc text-slate-400 leading-relaxed">Internship at Google focused on aligning LLM outputs with product intent via rubrics, constraints, and iteration—covering classification, summarization, and structured code-transformation workloads.</p>
+          <div class="project-stack">
+            <span class="project-stack-label" id="proj-google-signals-label">Signals</span>
+            <ul class="project-spec-tags flex flex-wrap gap-2" aria-labelledby="proj-google-signals-label">
+              <li>LLMs</li>
+              <li>prompting</li>
+              <li>eval</li>
+              <li>structured I/O</li>
+            </ul>
+          </div>
+          <details class="project-inspect">
+            <summary class="project-inspect-summary"><span aria-hidden="true">inspect_spec.json · case notes</span><span class="sr-only">Show more case notes for Google internship</span></summary>
+            <div class="project-spec-panel">
+              <p class="project-spec-thesis text-slate-300 leading-relaxed">Production-scale evaluation loops: align model outputs with product intent via rubrics, constraints, and iterative prompt design.</p>
             </div>
           </details>
-          <a href="/resume"
-            class="text-blue-400 hover:text-blue-300 mt-6 inline-flex items-center gap-2 font-semibold transition-colors">View Resume -&gt;</a>
+          <div class="project-card-footer">
+            <a href="/resume" class="project-card-cta link-project">View resume</a>
+          </div>
         </div>
-      </div>
-      <div
-        class="reveal-item reveal-carousel project-card group min-w-[86vw] md:min-w-full snap-start flex h-full flex-col bg-slate-900/70 border border-blue-900/30 hover:border-blue-500 rounded-3xl overflow-hidden transition-all">
-        <div class="project-card-media flex aspect-[1280/430] items-center justify-center bg-slate-950 text-3xl font-semibold accent-blue">Soon
+      </article>
+      <article
+        class="reveal-item reveal-carousel project-card group snap-start flex h-full flex-col bg-slate-900/70 border border-blue-900/30 rounded-3xl overflow-hidden"
+        aria-labelledby="proj-card-soon-title">
+        <div class="project-card-media aspect-[1280/430] overflow-hidden flex items-center justify-center shrink-0 bg-slate-950"
+          role="img"
+          aria-label="Project preview image not yet available">
+          <span class="project-card-media-placeholder text-3xl font-semibold accent-blue font-display px-6 text-center" aria-hidden="true">Soon</span>
         </div>
-        <div class="flex flex-1 flex-col p-5 md:p-6">
-          <h3 class="font-semibold text-xl">More Work Coming Soon</h3>
-          <p class="text-slate-400 mt-2">Additional software and AI projects will be added here.</p>
-          <details class="project-inspect mt-5 border-t border-white/10 pt-4 text-left">
-            <summary class="project-inspect-summary">inspect_spec.json</summary>
-            <div class="project-spec-panel mt-3 space-y-3 text-sm">
-              <p class="project-spec-thesis text-slate-300">Placeholder slot for the next shipped build—spec will list objective, stack, and links once live.</p>
-              <p class="font-mono text-[11px] uppercase tracking-wide text-blue-400/80">signals</p>
-              <ul class="project-spec-tags flex flex-wrap gap-2 font-mono text-xs" aria-label="Technologies">
-                <li>TBD</li>
-              </ul>
+        <div class="project-card-body">
+          <p class="project-card-eyebrow">Coming soon</p>
+          <h3 id="proj-card-soon-title" class="project-card-title font-display text-xl md:text-2xl font-semibold tracking-tight text-slate-50">More Work Coming Soon</h3>
+          <p class="project-card-desc text-slate-400 leading-relaxed">Additional software and AI projects will be added here.</p>
+          <div class="project-stack">
+            <span class="project-stack-label" id="proj-soon-signals-label">Signals</span>
+            <ul class="project-spec-tags flex flex-wrap gap-2" aria-labelledby="proj-soon-signals-label">
+              <li>TBD</li>
+            </ul>
+          </div>
+          <details class="project-inspect">
+            <summary class="project-inspect-summary"><span aria-hidden="true">inspect_spec.json · case notes</span><span class="sr-only">Show more case notes for upcoming project</span></summary>
+            <div class="project-spec-panel">
+              <p class="project-spec-thesis text-slate-300 leading-relaxed">Placeholder slot for the next shipped build—spec will list objective, stack, and links once live.</p>
             </div>
           </details>
+          <div class="project-card-footer">
+            <span class="project-card-cta-placeholder">Outbound project link will appear when this case study ships.</span>
+          </div>
         </div>
-      </div>
+      </article>
     </div>
   </section>
 
-  <section id="contact" class="reveal-section bg-slate-900/20 border border-blue-900/20 backdrop-blur-sm rounded-3xl py-16 md:py-24">
-    <div class="max-w-xl mx-auto px-6 text-center">
-      <h2 class="reveal-item text-4xl font-semibold accent-blue">Let's connect!</h2>
+  <section id="contact" class="reveal-section section-divider-top bg-slate-900/40 md:bg-slate-900/20 border border-blue-900/20 backdrop-blur-sm md:backdrop-blur-md rounded-3xl py-16 sm:py-20 md:py-28 max-w-6xl mx-auto px-4 sm:px-6" aria-labelledby="contact-heading">
+    <div class="max-w-xl mx-auto px-0 sm:px-2 text-center">
+      <p class="reveal-item section-eyebrow">Contact</p>
+      <h2 id="contact-heading" class="reveal-item text-3xl sm:text-4xl font-semibold accent-blue">Let's connect!</h2>
       <p class="reveal-item mt-4 text-slate-400">Open to internships, contract work, or just a chat about all things code and
         creativity.</p>
 
       <form id="contact-form" class="reveal-item mt-12 space-y-6 text-left" name="contact" method="POST" data-netlify="true"
         netlify-honeypot="bot-field">
         <input type="hidden" name="form-name" value="contact">
-        <p class="hidden">
-          <label>Do not fill this out: <input name="bot-field"></label>
+        <p class="hidden" aria-hidden="true">
+          <label>Do not fill this out: <input name="bot-field" tabindex="-1" autocomplete="off"></label>
         </p>
-        <input type="text" name="name" placeholder="Name"
-          class="w-full bg-black border border-slate-700 focus:border-blue-500 rounded-3xl px-6 py-5 outline-none"
-          required>
-        <input type="email" name="email" placeholder="Email"
-          class="w-full bg-black border border-slate-700 focus:border-blue-500 rounded-3xl px-6 py-5 outline-none"
-          required>
-        <textarea name="message" rows="5" placeholder="Message"
-          class="w-full bg-black border border-slate-700 focus:border-blue-500 rounded-3xl px-6 py-5 outline-none"
-          required></textarea>
+        <div>
+          <label for="contact-name" class="form-label">Name</label>
+          <input id="contact-name" type="text" name="name" placeholder="Jane Doe" class="form-field w-full" required autocomplete="name">
+        </div>
+        <div>
+          <label for="contact-email" class="form-label">Email</label>
+          <input id="contact-email" type="email" name="email" placeholder="you@example.com" class="form-field w-full" required autocomplete="email">
+        </div>
+        <div>
+          <label for="contact-message" class="form-label">Message</label>
+          <textarea id="contact-message" name="message" rows="5" placeholder="Write your message…" class="form-field w-full min-h-[8rem]"
+            required></textarea>
+        </div>
         <p id="form-status" class="hidden form-status-line mt-2 text-left rounded border px-4 py-3 text-sm font-mono leading-relaxed" role="status" aria-live="polite"></p>
-        <button id="form-submit" type="submit"
-          class="w-full bg-blue-600 hover:bg-blue-500 py-5 rounded-3xl font-semibold transition">Send Message</button>
+        <button id="form-submit" type="submit" class="btn btn-primary w-full">Send Message</button>
       </form>
     </div>
   </section>
 
-  <footer class="bg-black py-8 text-center text-slate-500 text-sm">
-    &copy; 2026 DevGhosty
+  </main>
+
+  <footer class="border-t border-white/5 bg-black pt-10 px-4 sm:px-6 pb-[max(2.5rem,env(safe-area-inset-bottom,0px))] text-center text-slate-500 text-sm">
+    <p>&copy; 2026 DevGhosty</p>
+    <p class="mt-2 text-xs footer-secondary">Seattle, Washington</p>
   </footer>
 
   </div>
