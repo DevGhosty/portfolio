@@ -1,0 +1,178 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-labelledby="title desc">
+  <title id="title">Steven Rosas animated GitHub profile header</title>
+  <desc id="desc">A clean dark systems dashboard header with animated signal paths, code lines, and profile text.</desc>
+
+  <defs>
+    <linearGradient id="canvas" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#050816" />
+      <stop offset="0.58" stop-color="#0b1224" />
+      <stop offset="1" stop-color="#111827" />
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#22d3ee" />
+      <stop offset="0.55" stop-color="#60a5fa" />
+      <stop offset="1" stop-color="#a78bfa" />
+    </linearGradient>
+    <linearGradient id="warm" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#f59e0b" />
+      <stop offset="1" stop-color="#34d399" />
+    </linearGradient>
+    <filter id="soft-glow" x="-25%" y="-25%" width="150%" height="150%">
+      <feGaussianBlur stdDeviation="3.5" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    <clipPath id="right-panel-clip">
+      <rect x="708" y="58" width="410" height="244" rx="18" />
+    </clipPath>
+
+    <style>
+      .sans {
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+      .mono {
+        font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      }
+      .quiet { fill: #94a3b8; }
+      .body { fill: #dbeafe; }
+      .title { fill: #f8fafc; font-size: 58px; font-weight: 760; letter-spacing: 0; }
+      .subtitle { fill: #cbd5e1; font-size: 23px; font-weight: 520; letter-spacing: 0; }
+      .eyebrow { fill: #7dd3fc; font-size: 17px; font-weight: 650; letter-spacing: 1.6px; }
+      .chip-text { fill: #e0f2fe; font-size: 15px; font-weight: 680; }
+      .code-text { fill: #bae6fd; font-size: 16px; font-weight: 560; }
+      .code-muted { fill: #64748b; font-size: 14px; }
+      .grid-line { stroke: #38bdf8; stroke-opacity: 0.08; }
+      .path {
+        fill: none;
+        stroke: url(#accent);
+        stroke-width: 3;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-dasharray: 12 18;
+        animation: pathMove 4.8s linear infinite;
+      }
+      .path.warm {
+        stroke: url(#warm);
+        stroke-dasharray: 6 16;
+        animation-duration: 5.8s;
+      }
+      .scan {
+        animation: scan 4s ease-in-out infinite;
+      }
+      .meter-a { animation: meterA 3.2s ease-in-out infinite; transform-origin: left center; }
+      .meter-b { animation: meterB 3.8s ease-in-out infinite; transform-origin: left center; }
+      .meter-c { animation: meterC 3.5s ease-in-out infinite; transform-origin: left center; }
+      .cursor { animation: blink 1.05s steps(2, start) infinite; }
+      .fade-1 { animation: fadeCycle 5.2s ease-in-out infinite; }
+      .fade-2 { animation: fadeCycle 5.2s ease-in-out infinite 0.7s; }
+      .fade-3 { animation: fadeCycle 5.2s ease-in-out infinite 1.4s; }
+      @keyframes pathMove {
+        to { stroke-dashoffset: -120; }
+      }
+      @keyframes scan {
+        0%, 100% { transform: translateX(0); opacity: 0.15; }
+        50% { transform: translateX(305px); opacity: 0.42; }
+      }
+      @keyframes meterA {
+        0%, 100% { transform: scaleX(0.58); opacity: 0.78; }
+        50% { transform: scaleX(0.9); opacity: 1; }
+      }
+      @keyframes meterB {
+        0%, 100% { transform: scaleX(0.74); opacity: 0.78; }
+        45% { transform: scaleX(0.42); opacity: 0.92; }
+      }
+      @keyframes meterC {
+        0%, 100% { transform: scaleX(0.36); opacity: 0.72; }
+        55% { transform: scaleX(0.68); opacity: 1; }
+      }
+      @keyframes blink {
+        50% { opacity: 0; }
+      }
+      @keyframes fadeCycle {
+        0%, 100% { opacity: 0.45; }
+        45%, 65% { opacity: 1; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .path, .scan, .meter-a, .meter-b, .meter-c, .cursor, .fade-1, .fade-2, .fade-3 {
+          animation: none;
+        }
+      }
+    </style>
+  </defs>
+
+  <rect width="1200" height="360" rx="24" fill="url(#canvas)" />
+  <rect x="1.5" y="1.5" width="1197" height="357" rx="22.5" fill="none" stroke="#1e3a8a" stroke-opacity="0.85" stroke-width="3" />
+
+  <g opacity="0.9">
+    <path class="grid-line" d="M80 50V310" />
+    <path class="grid-line" d="M180 50V310" />
+    <path class="grid-line" d="M280 50V310" />
+    <path class="grid-line" d="M380 50V310" />
+    <path class="grid-line" d="M480 50V310" />
+    <path class="grid-line" d="M580 50V310" />
+    <path class="grid-line" d="M680 50V310" />
+    <path class="grid-line" d="M780 50V310" />
+    <path class="grid-line" d="M880 50V310" />
+    <path class="grid-line" d="M980 50V310" />
+    <path class="grid-line" d="M1080 50V310" />
+    <path class="grid-line" d="M56 80H1144" />
+    <path class="grid-line" d="M56 160H1144" />
+    <path class="grid-line" d="M56 240H1144" />
+    <path class="grid-line" d="M56 320H1144" />
+  </g>
+
+  <g transform="translate(72 76)">
+    <text class="sans eyebrow" x="0" y="0">DEVGHOSTY / SOFTWARE ENGINEERING</text>
+    <text class="sans title" x="0" y="76">Steven Rosas</text>
+    <text class="sans subtitle" x="0" y="120">AI systems, backend services, developer tools,</text>
+    <text class="sans subtitle" x="0" y="154">and immersive web experiences.</text>
+
+    <g transform="translate(0 196)">
+      <rect x="0" y="0" width="112" height="36" rx="10" fill="#0f172a" stroke="#22d3ee" stroke-opacity="0.5" />
+      <rect x="124" y="0" width="122" height="36" rx="10" fill="#0f172a" stroke="#60a5fa" stroke-opacity="0.5" />
+      <rect x="258" y="0" width="134" height="36" rx="10" fill="#0f172a" stroke="#a78bfa" stroke-opacity="0.5" />
+      <rect x="404" y="0" width="126" height="36" rx="10" fill="#0f172a" stroke="#34d399" stroke-opacity="0.42" />
+      <text class="sans chip-text" x="25" y="24">LLMs</text>
+      <text class="sans chip-text" x="150" y="24">Cloud</text>
+      <text class="sans chip-text" x="287" y="24">Web UX</text>
+      <text class="sans chip-text" x="432" y="24">Systems</text>
+    </g>
+  </g>
+
+  <g clip-path="url(#right-panel-clip)">
+    <rect x="708" y="58" width="410" height="244" rx="18" fill="#020617" stroke="#334155" />
+    <rect x="708" y="58" width="410" height="44" rx="18" fill="#0f172a" />
+    <rect x="708" y="84" width="410" height="18" fill="#0f172a" />
+    <circle cx="734" cy="80" r="6" fill="#fb7185" />
+    <circle cx="756" cy="80" r="6" fill="#f59e0b" />
+    <circle cx="778" cy="80" r="6" fill="#34d399" />
+    <text class="mono code-muted" x="810" y="86">systems.ts</text>
+
+    <rect class="scan" x="720" y="112" width="56" height="146" fill="#38bdf8" opacity="0.18" />
+
+    <g transform="translate(736 132)">
+      <text class="mono code-muted" x="0" y="0">01</text>
+      <text class="mono code-text fade-1" x="42" y="0">focus = ["AI", "tools", "web"];</text>
+      <text class="mono code-muted" x="0" y="36">02</text>
+      <text class="mono code-text fade-2" x="42" y="36">ship(clearSystems, humanUX);</text>
+      <text class="mono code-muted" x="0" y="72">03</text>
+      <text class="mono code-text fade-3" x="42" y="72">measure(prompts, reliability);</text>
+      <text class="mono code-muted" x="0" y="108">04</text>
+      <text class="mono code-text" x="42" y="108">build</text>
+      <rect class="cursor" x="96" y="92" width="10" height="22" rx="2" fill="#7dd3fc" />
+    </g>
+
+    <g transform="translate(748 262)">
+      <rect x="0" y="0" width="328" height="10" rx="5" fill="#172554" />
+      <rect class="meter-a" x="0" y="0" width="328" height="10" rx="5" fill="url(#accent)" />
+      <rect x="0" y="20" width="266" height="10" rx="5" fill="#172554" />
+      <rect class="meter-b" x="0" y="20" width="266" height="10" rx="5" fill="#34d399" />
+    </g>
+  </g>
+
+  <g filter="url(#soft-glow)">
+    <rect class="meter-c" x="72" y="318" width="180" height="4" rx="2" fill="url(#accent)" opacity="0.7" />
+  </g>
+</svg>

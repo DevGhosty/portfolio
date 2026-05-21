@@ -175,20 +175,56 @@
     <div class="space-y-10 reveal-item">
       <div>
         <h3 class="skills-group-label">Languages</h3>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-3">
-          <div class="skill-cell">C++</div>
-          <div class="skill-cell">C</div>
-          <div class="skill-cell">Java</div>
-          <div class="skill-cell">Luau</div>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mt-3">
+          <div class="skill-cell">
+            <img src="../assets/icons/cpp.svg" alt="" class="skill-cell-icon" width="32" height="32" decoding="async">
+            <span class="skill-cell-label">C++</span>
+          </div>
+          <div class="skill-cell">
+            <img src="../assets/icons/c.svg" alt="" class="skill-cell-icon" width="32" height="32" decoding="async">
+            <span class="skill-cell-label">C</span>
+          </div>
+          <div class="skill-cell">
+            <img src="../assets/icons/java.svg" alt="" class="skill-cell-icon" width="32" height="32" decoding="async">
+            <span class="skill-cell-label">Java</span>
+          </div>
+          <div class="skill-cell">
+            <img src="../assets/icons/luau.svg" alt="" class="skill-cell-icon" width="32" height="32" decoding="async">
+            <span class="skill-cell-label">Luau</span>
+          </div>
+          <div class="skill-cell">
+            <img src="../assets/icons/python.svg" alt="" class="skill-cell-icon" width="32" height="32" decoding="async">
+            <span class="skill-cell-label">Python</span>
+          </div>
+          <div class="skill-cell">
+            <img src="../assets/icons/javascript.svg" alt="" class="skill-cell-icon" width="32" height="32" decoding="async">
+            <span class="skill-cell-label">JavaScript</span>
+          </div>
         </div>
       </div>
       <div>
         <h3 class="skills-group-label">Systems &amp; tools</h3>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-3">
-          <div class="skill-cell md:col-span-2">Machine Learning</div>
-          <div class="skill-cell">Git</div>
-          <div class="skill-cell">Databases</div>
-          <div class="skill-cell md:col-span-2">Cloud Apps</div>
+          <div class="skill-cell md:col-span-2">
+            <img src="../assets/icons/ml.svg" alt="" class="skill-cell-icon" width="32" height="32" decoding="async">
+            <span class="skill-cell-label">Machine Learning</span>
+          </div>
+          <div class="skill-cell">
+            <img src="../assets/icons/git.svg" alt="" class="skill-cell-icon" width="32" height="32" decoding="async">
+            <span class="skill-cell-label">Git</span>
+          </div>
+          <div class="skill-cell">
+            <img src="../assets/icons/sql.svg" alt="" class="skill-cell-icon" width="32" height="32" decoding="async">
+            <span class="skill-cell-label">SQL</span>
+          </div>
+          <div class="skill-cell">
+            <img src="../assets/icons/database.svg" alt="" class="skill-cell-icon" width="32" height="32" decoding="async">
+            <span class="skill-cell-label">Databases</span>
+          </div>
+          <div class="skill-cell md:col-span-2">
+            <img src="../assets/icons/cloud.svg" alt="" class="skill-cell-icon" width="32" height="32" decoding="async">
+            <span class="skill-cell-label">Cloud Apps</span>
+          </div>
         </div>
       </div>
     </div>
@@ -289,30 +325,69 @@
       </article>
       <article
         class="reveal-item reveal-carousel project-card group snap-start flex h-full flex-col bg-slate-900/70 border border-blue-900/30 rounded-3xl overflow-hidden"
-        aria-labelledby="proj-card-soon-title-index">
-        <div class="project-card-media aspect-[1280/430] overflow-hidden flex items-center justify-center shrink-0 bg-slate-950"
-          role="img"
-          aria-label="Project preview image not yet available">
-          <span class="project-card-media-placeholder text-3xl font-semibold accent-blue font-display px-6 text-center" aria-hidden="true">Soon</span>
+        aria-labelledby="proj-card-husky-title-index">
+        <div class="project-card-media aspect-[16/9] overflow-hidden shrink-0 bg-slate-950">
+          <img src="../assets/husky-review-preview.png" alt="Screenshot of the Husky-Review landing page and in-app workspace preview" class="block h-full w-full object-cover object-top project-card-img" width="1280" height="720" loading="lazy" decoding="async">
         </div>
         <div class="project-card-body">
-          <p class="project-card-eyebrow">Coming soon</p>
-          <h3 id="proj-card-soon-title-index" class="project-card-title font-display text-xl md:text-2xl font-semibold tracking-tight text-slate-50">More Work Coming Soon</h3>
-          <p class="project-card-desc text-slate-400 leading-relaxed">Additional software and AI projects will be added here.</p>
+          <p class="project-card-eyebrow">Shipped · UWB</p>
+          <h3 id="proj-card-husky-title-index" class="project-card-title font-display text-xl md:text-2xl font-semibold tracking-tight text-slate-50">Husky-Review</h3>
+          <p class="project-card-desc text-slate-400 leading-relaxed">Actionable resume review for UWB students: upload a resume and job posting, run AI-assisted gap analysis with campus-linked recommendations, save reviews, and turn insights into a week-by-week action board you can execute.</p>
           <div class="project-stack">
-            <span class="project-stack-label" id="proj-soon-signals-label-index">Signals</span>
-            <ul class="project-spec-tags flex flex-wrap gap-2" aria-labelledby="proj-soon-signals-label-index">
-              <li>TBD</li>
+            <span class="project-stack-label" id="proj-husky-signals-label-index">Signals</span>
+            <ul class="project-spec-tags flex flex-wrap gap-2" aria-labelledby="proj-husky-signals-label-index">
+              <li>TypeScript</li>
+              <li>Next.js</li>
+              <li>AI</li>
+              <li>Vercel</li>
             </ul>
           </div>
           <details class="project-inspect">
-            <summary class="project-inspect-summary"><span aria-hidden="true">inspect_spec.json · case notes</span><span class="sr-only">Show more case notes for upcoming project</span></summary>
+            <summary class="project-inspect-summary"><span aria-hidden="true">inspect_spec.json · case notes</span><span class="sr-only">Show more case notes for Husky-Review</span></summary>
             <div class="project-spec-panel">
-              <p class="project-spec-thesis text-slate-300 leading-relaxed">Placeholder slot for the next shipped build—spec will list objective, stack, and links once live.</p>
+              <p class="project-spec-thesis text-slate-300 leading-relaxed">Student-first workspace: verified UWB opportunities, privacy-conscious uploads, and recommendations you can verify before they land on your board.</p>
             </div>
           </details>
           <div class="project-card-footer">
-            <span class="project-card-cta-placeholder">Outbound project link will appear when this case study ships.</span>
+            <a href="https://husky-review.vercel.app/"
+              target="_blank" rel="noopener noreferrer"
+              class="project-card-cta link-project link-project-external">Live app<span class="sr-only"> (opens in new tab)</span>
+              <svg class="icon-svg link-project-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14L21 3"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </article>
+      <article
+        class="reveal-item reveal-carousel project-card group snap-start flex h-full flex-col bg-slate-900/70 border border-blue-900/30 rounded-3xl overflow-hidden"
+        aria-labelledby="proj-card-underground-title-index">
+        <div class="project-card-media aspect-[16/9] overflow-hidden flex items-center justify-center shrink-0 bg-gradient-to-br from-slate-950 via-violet-950/40 to-slate-900"
+          role="img"
+          aria-label="Underground Artwork preview not yet available">
+          <span class="project-card-media-placeholder text-xl sm:text-2xl font-semibold accent-blue font-display px-6 text-center leading-tight" aria-hidden="true">Underground Artwork</span>
+        </div>
+        <div class="project-card-body">
+          <p class="project-card-eyebrow">In progress</p>
+          <h3 id="proj-card-underground-title-index" class="project-card-title font-display text-xl md:text-2xl font-semibold tracking-tight text-slate-50">Underground Artwork</h3>
+          <p class="project-card-desc text-slate-400 leading-relaxed">Creative web experience exploring underground art and gallery-style presentation—actively being built; public demo and repo links will ship when the first release is ready.</p>
+          <div class="project-stack">
+            <span class="project-stack-label" id="proj-underground-signals-label-index">Signals</span>
+            <ul class="project-spec-tags flex flex-wrap gap-2" aria-labelledby="proj-underground-signals-label-index">
+              <li>creative</li>
+              <li>web</li>
+              <li>UI</li>
+              <li>WIP</li>
+            </ul>
+          </div>
+          <details class="project-inspect">
+            <summary class="project-inspect-summary"><span aria-hidden="true">inspect_spec.json · case notes</span><span class="sr-only">Show more case notes for Underground Artwork</span></summary>
+            <div class="project-spec-panel">
+              <p class="project-spec-thesis text-slate-300 leading-relaxed">Focus on immersive layout, artwork discovery, and a polished browse flow—case study and outbound links stay offline until launch.</p>
+            </div>
+          </details>
+          <div class="project-card-footer">
+            <span class="project-card-cta-placeholder">Under development</span>
           </div>
         </div>
       </article>
